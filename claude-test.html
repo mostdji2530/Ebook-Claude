@@ -918,37 +918,32 @@ function saveResult({ correct, total, pct, passed }) {
   prev.push(record);
   localStorage.setItem(key, JSON.stringify(prev));
 
-  // 2) ส่งไป Google Sheets — ส่งเฉพาะข้อมูลสำคัญ (ตัด answers ออก)
-  try {
-    const payload = {
-      name:     record.name,
-      nick:     record.nick,
-      testType: record.testType,
-      correct:  record.correct,
-      total:    record.total,
-      pct:      record.pct,
-      passed:   record.passed,
-      date:     record.date
-    };
-    const url = SHEETS_URL + '?data=' + encodeURIComponent(JSON.stringify(payload));
+  // 2) ส่งไป Google Sheets — ยิงหลายวิธีพร้อมกันเพื่อเพิ่มโอกาสสำเร็จ
+  const payload = {
+    name:     record.name,
+    nick:     record.nick,
+    testType: record.testType,
+    correct:  record.correct,
+    total:    record.total,
+    pct:      record.pct,
+    passed:   record.passed,
+    date:     record.date
+  };
+  const sheetsUrl = SHEETS_URL + '?data=' + encodeURIComponent(JSON.stringify(payload)) + '&_t=' + Date.now();
 
-    // วิธีที่ 1: XMLHttpRequest
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.send();
-  } catch(e) {
-    // วิธีที่ 2: Image pixel fallback
-    try {
-      new Image().src = SHEETS_URL + '?t=' + Date.now() +
-        '&name=' + encodeURIComponent(record.name) +
-        '&nick=' + encodeURIComponent(record.nick) +
-        '&type=' + record.testType +
-        '&score=' + record.correct + '_' + record.total +
-        '&pct='   + record.pct +
-        '&pass='  + record.passed +
-        '&date='  + encodeURIComponent(record.date);
-    } catch(e2) {}
-  }
+  // วิธีที่ 1: fetch no-cors (simple GET — browser ส่งได้แน่นอน ไม่มี preflight)
+  try { fetch(sheetsUrl, { method: 'GET', mode: 'no-cors' }).catch(function(){}); } catch(e1){}
+
+  // วิธีที่ 2: Image pixel
+  try { (new Image()).src = sheetsUrl + '&_m=img'; } catch(e2){}
+
+  // วิธีที่ 3: script tag (JSONP-style — ข้าม CORS ได้สมบูรณ์)
+  try {
+    var sc = document.createElement('script');
+    sc.src = sheetsUrl + '&_m=sc';
+    document.body.appendChild(sc);
+    setTimeout(function(){ try{ document.body.removeChild(sc); }catch(ex){} }, 5000);
+  } catch(e3){}
 }
 
 /* ── BUILD RESULTS ── */
