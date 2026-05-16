@@ -918,11 +918,37 @@ function saveResult({ correct, total, pct, passed }) {
   prev.push(record);
   localStorage.setItem(key, JSON.stringify(prev));
 
-  // 2) ส่งไป Google Sheets ด้วย Image pixel — ไม่มีปัญหา CORS เลย
+  // 2) ส่งไป Google Sheets — ส่งเฉพาะข้อมูลสำคัญ (ตัด answers ออก)
   try {
-    const img = new Image();
-    img.src = SHEETS_URL + '?data=' + encodeURIComponent(JSON.stringify(record));
-  } catch(e) {}
+    const payload = {
+      name:     record.name,
+      nick:     record.nick,
+      testType: record.testType,
+      correct:  record.correct,
+      total:    record.total,
+      pct:      record.pct,
+      passed:   record.passed,
+      date:     record.date
+    };
+    const url = SHEETS_URL + '?data=' + encodeURIComponent(JSON.stringify(payload));
+
+    // วิธีที่ 1: XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.send();
+  } catch(e) {
+    // วิธีที่ 2: Image pixel fallback
+    try {
+      new Image().src = SHEETS_URL + '?t=' + Date.now() +
+        '&name=' + encodeURIComponent(record.name) +
+        '&nick=' + encodeURIComponent(record.nick) +
+        '&type=' + record.testType +
+        '&score=' + record.correct + '_' + record.total +
+        '&pct='   + record.pct +
+        '&pass='  + record.passed +
+        '&date='  + encodeURIComponent(record.date);
+    } catch(e2) {}
+  }
 }
 
 /* ── BUILD RESULTS ── */
