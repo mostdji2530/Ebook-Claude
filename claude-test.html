@@ -918,13 +918,18 @@ function saveResult({ correct, total, pct, passed }) {
   prev.push(record);
   localStorage.setItem(key, JSON.stringify(prev));
 
-  // 2) ส่งไป Google Sheets (ใช้ text/plain เพื่อผ่าน no-cors)
-  fetch(SHEETS_URL, {
-    method:  'POST',
-    mode:    'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body:    JSON.stringify(record)
-  }).catch(() => {}); // ไม่แสดง error ถ้า network ไม่มี
+  // 2) ส่งไป Google Sheets ด้วย sendBeacon (ไม่มีปัญหา CORS)
+  try {
+    const blob = new Blob([JSON.stringify(record)], { type: 'text/plain' });
+    navigator.sendBeacon(SHEETS_URL, blob);
+  } catch(e) {
+    // fallback สำหรับ browser เก่า
+    fetch(SHEETS_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(record)
+    }).catch(() => {});
+  }
 }
 
 /* ── BUILD RESULTS ── */
