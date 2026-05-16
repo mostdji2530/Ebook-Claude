@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Guide — Pre-test & Post-test</title>
+<style>
+:root {
+  --orange: #D97757;
+  --dark: #1a1a2e;
+  --navy: #16213e;
+  --blue: #0f3460;
+  --purple: #7C3AED;
+  --green: #059669;
+  --red: #DC2626;
+  --cyan: #06B6D4;
+  --yellow: #F59E0B;
+  --bg: #f0f2ff;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --muted: #64748b;
+  --gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', 'Sarabun', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOP BAR ─────────────────────── */
+.topbar {
+  background: var(--gradient);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topbar-logo { color: #fff; font-weight: 800; font-size: 16px; }
+.topbar-logo span { color: var(--orange); }
+.topbar-back {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .2s;
+}
+.topbar-back:hover { color: #fff; }
+
+/* ── SCREEN WRAPPER ──────────────── */
+.screen {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.screen.active { display: flex; }
+
+/* ── LANDING CARD ─────────────────── */
+.landing-card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+  text-align: center;
+}
+.landing-emoji { font-size: 56px; margin-bottom: 16px; }
+.landing-title { font-size: 26px; font-weight: 800; color: var(--dark); margin-bottom: 6px; }
+.landing-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
+
+.form-group { margin-bottom: 16px; text-align: left; }
+.form-label { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 6px; display: block; }
+.form-input {
+  width: 100%;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color .2s;
+  outline: none;
+  color: var(--dark);
+}
+.form-input:focus { border-color: var(--purple); }
+
+.test-type-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+
+.type-btn {
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 12px;
+  cursor: pointer;
+  background: #fff;
+  transition: all .2s;
+  text-align: center;
+}
+.type-btn:hover { border-color: var(--purple); background: #f5f0ff; }
+.type-btn.selected { border-color: var(--purple); background: #ede9fe; }
+.type-btn .tb-icon { font-size: 30px; margin-bottom: 8px; }
+.type-btn .tb-label { font-size: 14px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+.type-btn .tb-desc { font-size: 11px; color: var(--muted); }
+
+.btn-start {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--gradient);
+  color: #fff;
+  margin-top: 16px;
+  transition: opacity .2s, transform .2s;
+}
+.btn-start:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-start:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.err-msg { font-size: 12px; color: var(--red); margin-top: 8px; display: none; }
+
+/* ── QUIZ SCREEN ──────────────────── */
+.quiz-wrap {
+  max-width: 760px;
+  width: 100%;
+}
+
+.quiz-header {
+  background: var(--gradient);
+  border-radius: 20px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.quiz-title-block {}
+.quiz-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.badge-pre  { background: rgba(6,182,212,.25); color: #67e8f9; }
+.badge-post { background: rgba(217,119,87,.25); color: #fca97a; }
+.quiz-user-name { color: #fff; font-size: 20px; font-weight: 800; }
+.quiz-user-nick { color: rgba(255,255,255,.55); font-size: 13px; margin-top: 2px; }
+
+.quiz-progress-wrap { text-align: right; }
+.quiz-prog-label { color: rgba(255,255,255,.55); font-size: 11px; margin-bottom: 6px; }
+.quiz-prog-bar-bg { width: 160px; height: 8px; background: rgba(255,255,255,.15); border-radius: 100px; overflow: hidden; }
+.quiz-prog-bar { height: 100%; border-radius: 100px; background: var(--orange); transition: width .4s; }
+.quiz-prog-num { color: rgba(255,255,255,.7); font-size: 12px; margin-top: 4px; }
+
+/* Questions */
+.questions-list { display: flex; flex-direction: column; gap: 20px; }
+
+.q-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  border: 2px solid var(--border);
+  transition: border-color .2s;
+}
+.q-card.answered { border-color: #c7d2fe; }
+
+.q-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--purple);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.q-num-dot {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.q-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.q-tag {
+  display: inline-block;
+  background: #ede9fe;
+  color: #5B21B6;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.options-list { display: flex; flex-direction: column; gap: 8px; }
+
+.option-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all .18s;
+  background: #fafbff;
+}
+.option-item:hover { border-color: var(--purple); background: #f5f0ff; }
+.option-item.selected { border-color: var(--purple); background: #ede9fe; }
+.option-item.correct  { border-color: var(--green);  background: #ecfdf5; pointer-events: none; }
+.option-item.wrong    { border-color: var(--red);    background: #fff5f5; pointer-events: none; }
+.option-item.show-correct { border-color: var(--green); background: #ecfdf5; pointer-events: none; }
+.option-item.disabled { pointer-events: none; opacity: .65; }
+
+.option-key {
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all .18s;
+}
+.option-item.selected .option-key  { border-color: var(--purple); background: var(--purple); color: #fff; }
+.option-item.correct  .option-key  { border-color: var(--green);  background: var(--green);  color: #fff; }
+.option-item.wrong    .option-key  { border-color: var(--red);    background: var(--red);    color: #fff; }
+.option-item.show-correct .option-key { border-color: var(--green); background: var(--green); color: #fff; }
+
+.option-text { font-size: 13px; color: var(--dark); line-height: 1.5; }
+
+/* Submit */
+.quiz-footer {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.answered-count { font-size: 13px; color: var(--muted); }
+.answered-count strong { color: var(--dark); }
+.btn-submit {
+  padding: 14px 36px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--gradient);
+  color: #fff;
+  transition: opacity .2s, transform .2s;
+}
+.btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-submit:disabled { opacity: 0.38; cursor: not-allowed; transform: none; }
+
+/* ── RESULTS SCREEN ──────────────── */
+.result-wrap {
+  max-width: 680px;
+  width: 100%;
+}
+
+.result-hero {
+  border-radius: 24px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.result-hero.pass    { background: linear-gradient(135deg,#059669,#047857); }
+.result-hero.fail    { background: linear-gradient(135deg,#DC2626,#B91C1C); }
+.result-hero.pretest { background: var(--gradient); }
+
+.result-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,.07);
+  border-radius: 50%;
+}
+
+.result-emoji { font-size: 64px; margin-bottom: 12px; }
+.result-status {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.result-name { color: rgba(255,255,255,.75); font-size: 15px; margin-bottom: 24px; }
+
+.score-ring-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.score-ring {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.1);
+}
+.score-num { font-size: 32px; font-weight: 900; color: #fff; line-height: 1; }
+.score-label { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
+
+.score-stats { text-align: left; }
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: rgba(255,255,255,.85);
+  font-size: 14px;
+}
+.stat-icon { font-size: 18px; }
+
+.result-msg {
+  background: rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: rgba(255,255,255,.9);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* Review */
+.review-section {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  margin-bottom: 20px;
+}
+.review-title { font-size: 16px; font-weight: 800; margin-bottom: 18px; color: var(--dark); }
+
+.review-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.review-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.review-q-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.review-status-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.review-q-text { font-size: 13px; font-weight: 700; color: var(--dark); line-height: 1.4; }
+
+.review-answer-row {
+  display: flex;
+  gap: 12px;
+  margin-left: 28px;
+  flex-wrap: wrap;
+}
+.review-answer {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.review-answer.user-wrong { background: #fee2e2; color: #991B1B; }
+.review-answer.correct-ans { background: #d1fae5; color: #065F46; }
+.review-answer.user-correct { background: #d1fae5; color: #065F46; }
+
+.review-explain {
+  margin-left: 28px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  background: #f8f9ff;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* Action Buttons */
+.result-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-action {
+  flex: 1;
+  min-width: 140px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all .2s;
+}
+.btn-primary { background: var(--gradient); color: #fff; }
+.btn-primary:hover { opacity: .85; transform: translateY(-1px); }
+.btn-outline {
+  background: #fff;
+  border: 2px solid var(--border);
+  color: var(--dark);
+}
+.btn-outline:hover { border-color: var(--purple); background: #f5f0ff; color: var(--purple); }
+.btn-study { background: linear-gradient(135deg,#D97757,#C2622E); color: #fff; }
+.btn-study:hover { opacity: .88; transform: translateY(-1px); }
+
+/* Progress bar (overall) */
+.overall-bar-wrap { margin: 16px 0 8px; }
+.overall-bar-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.overall-bar-bg { height: 10px; background: #f1f3f9; border-radius: 100px; overflow: hidden; }
+.overall-bar-fill { height: 100%; border-radius: 100px; transition: width 1s ease; }
+
+/* ── CONFETTI-LIKE dots ───────────── */
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.float { animation: float 3s ease-in-out infinite; }
+
+/* ── RESPONSIVE ───────────────────── */
+@media (max-width: 600px) {
+  .quiz-header { flex-direction: column; align-items: flex-start; }
+  .quiz-progress-wrap { text-align: left; }
+  .quiz-prog-bar-bg { width: 100%; }
+  .score-ring-wrap { gap: 20px; }
+  .result-hero { padding: 28px 20px; }
+  .landing-card { padding: 32px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">🤖 Claude Guide — <span>Assessment Center</span></div>
+  <div style="display:flex;gap:16px;align-items:center">
+    <a href="claude-admin.html" class="topbar-back" style="color:#fca97a">🔐 Admin Panel</a>
+    <a href="claude-guide-ebook.html" class="topbar-back">← E-book</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     SCREEN 1: LANDING — กรอกชื่อ + เลือกประเภท
+     ════════════════════════════════════════════════ -->
+<div class="screen active" id="screen-landing">
+  <div class="landing-card">
+    <div class="landing-emoji float">📝</div>
+    <div class="landing-title">Claude Guide Assessment</div>
+    <div class="landing-sub">วัดความรู้ก่อน-หลังเรียนเรื่อง Claude<br>กรุณากรอกข้อมูลและเลือกประเภทการทดสอบ</div>
+
+    <div class="form-group">
+      <label class="form-label">ชื่อ-นามสกุล <span style="color:#DC2626">*</span></label>
+      <input class="form-input" id="inputName" type="text" placeholder="เช่น สมชาย ใจดี" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label class="form-label">ชื่อเล่น <span style="color:#DC2626">*</span></label>
+      <input class="form-input" id="inputNick" type="text" placeholder="เช่น ชาย" autocomplete="off">
+    </div>
+
+    <div style="text-align:left;margin-top:8px">
+      <div class="form-label" style="margin-bottom:0">เลือกประเภทการทดสอบ <span style="color:#DC2626">*</span></div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px">ทำ Pre-test ก่อนเรียน และ Post-test หลังเรียนจบ</div>
+    </div>
+    <div class="test-type-row">
+      <div class="type-btn" id="btn-pre" onclick="selectType('pre')">
+        <div class="tb-icon">🔬</div>
+        <div class="tb-label">Pre-test</div>
+        <div class="tb-desc">ทำก่อนเรียน<br>วัดพื้นฐาน</div>
+      </div>
+      <div class="type-btn" id="btn-post" onclick="selectType('post')">
+        <div class="tb-icon">🎓</div>
+        <div class="tb-label">Post-test</div>
+        <div class="tb-desc">ทำหลังเรียน<br>วัดผลการเรียนรู้</div>
+      </div>
+    </div>
+
+    <div class="err-msg" id="errMsg">⚠️ กรุณากรอกชื่อ ชื่อเล่น และเลือกประเภทการทดสอบ</div>
+    <button class="btn-start" id="btnStart" onclick="startTest()">เริ่มทำแบบทดสอบ →</button>
+
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:center;gap:24px">
+      <div style="text-align:center">
+        <div style="font-size:20px">10</div>
+        <div style="font-size:11px;color:var(--muted)">ข้อ</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:20px">~10</div>
+        <div style="font-size:11px;color:var(--muted)">นาที</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:20px">51%</div>
+        <div style="font-size:11px;color:var(--muted)">เกณฑ์ผ่าน (Post)</div>
+      </div>
+    </div>
+
+    <!-- Admin link -->
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border);text-align:center;">
+      <a href="claude-admin.html"
+         style="display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:10px;background:#1a1a2e;color:#fca97a;font-size:13px;font-weight:700;text-decoration:none;border:1px solid #2d2d50;transition:background .2s;"
+         onmouseover="this.style.background='#2d2d50'" onmouseout="this.style.background='#1a1a2e'">
+        🔐 Admin Panel — ดูรายงานผล
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     SCREEN 2: QUIZ
+     ════════════════════════════════════════════════ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-wrap">
+
+    <!-- Header -->
+    <div class="quiz-header">
+      <div class="quiz-title-block">
+        <div class="quiz-type-badge" id="quizBadge"></div>
+        <div class="quiz-user-name" id="quizUserName"></div>
+        <div class="quiz-user-nick" id="quizUserNick"></div>
+      </div>
+      <div class="quiz-progress-wrap">
+        <div class="quiz-prog-label">ความคืบหน้า</div>
+        <div class="quiz-prog-bar-bg">
+          <div class="quiz-prog-bar" id="progBar" style="width:0%"></div>
+        </div>
+        <div class="quiz-prog-num" id="progNum">0 / 10 ข้อที่ตอบแล้ว</div>
+      </div>
+    </div>
+
+    <!-- Questions -->
+    <div class="questions-list" id="questionsList"></div>
+
+    <!-- Footer -->
+    <div class="quiz-footer">
+      <div class="answered-count" id="answeredCount">ตอบแล้ว <strong>0</strong> / 10 ข้อ</div>
+      <button class="btn-submit" id="btnSubmit" onclick="submitQuiz()" disabled>
+        ส่งคำตอบ &amp; ดูผล →
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     SCREEN 3: RESULTS
+     ════════════════════════════════════════════════ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+
+    <!-- Hero -->
+    <div class="result-hero" id="resultHero">
+      <div class="result-emoji" id="resultEmoji"></div>
+      <div class="result-status" id="resultStatus"></div>
+      <div class="result-name" id="resultNameLine"></div>
+
+      <div class="score-ring-wrap">
+        <div class="score-ring">
+          <div class="score-num" id="resultScore"></div>
+          <div class="score-label">คะแนน</div>
+        </div>
+        <div class="score-stats" id="resultStats"></div>
+      </div>
+
+      <div class="overall-bar-wrap">
+        <div class="overall-bar-label">
+          <span>0%</span>
+          <span id="resultPctLabel"></span>
+          <span>100%</span>
+        </div>
+        <div class="overall-bar-bg">
+          <div class="overall-bar-fill" id="resultBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="result-msg" id="resultMsg"></div>
+    </div>
+
+    <!-- Review -->
+    <div class="review-section">
+      <div class="review-title">📋 ทบทวนคำตอบทั้งหมด</div>
+      <div id="reviewList"></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="result-actions" id="resultActions"></div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════════════════ -->
+<script>
+
+/* ── QUESTION BANK ──
+   โหลดจาก localStorage ก่อน (แก้ไขได้จาก Admin Panel)
+   ถ้าไม่มีใช้ DEFAULT_QUESTIONS ── */
+const DEFAULT_QUESTIONS = [
+  {
+    id: 1,
+    tag: "Product Overview",
+    text: "Claude Chat, Claude Code และ Claude Cowork แตกต่างกันอย่างไรในแง่ของกลุ่มผู้ใช้หลัก?",
+    options: [
+      "ทั้งสามผลิตภัณฑ์เหมือนกันทุกอย่าง เพียงแต่ชื่อต่างกัน",
+      "Chat สำหรับทุกคน, Code สำหรับ Developer, Cowork สำหรับทีมงาน Business",
+      "Chat สำหรับ Developer, Code สำหรับทุกคน, Cowork สำหรับนักออกแบบ",
+      "Cowork สำหรับ Developer, Code สำหรับทีม, Chat สำหรับนักเรียน"
+    ],
+    answer: 1,
+    explain: "Claude Chat เหมาะกับทุกคน ไม่ต้องมีความรู้ด้านเทคนิค, Claude Code เหมาะกับ Developer ที่ต้องการทำงานกับ code และ terminal โดยตรง, Claude Cowork เหมาะกับทีม Business ที่ต้องการ integrate กับ tools ต่างๆ"
+  },
+  {
+    id: 2,
+    tag: "Claude Code",
+    text: "คำสั่งใดถูกต้องสำหรับการติดตั้ง Claude Code?",
+    options: [
+      "pip install claude-code",
+      "brew install claude",
+      "npm install -g @anthropic-ai/claude-code",
+      "apt-get install claude-code"
+    ],
+    answer: 2,
+    explain: "Claude Code ติดตั้งผ่าน npm ด้วยคำสั่ง npm install -g @anthropic-ai/claude-code เนื่องจากเป็น Node.js CLI tool ต้องการ Node.js 18+ และ Anthropic API Key"
+  },
+  {
+    id: 3,
+    tag: "AI Models",
+    text: "หากต้องการ debug โค้ด Python ที่ซับซ้อน และต้องการ balance ระหว่างความเร็วกับคุณภาพ ควรเลือก Model ใด?",
+    options: [
+      "Claude Haiku — เพราะเร็วที่สุด",
+      "Claude Sonnet — เพราะ balance ดีที่สุดสำหรับงาน coding",
+      "Claude Opus — เพราะฉลาดที่สุดเสมอไป",
+      "ไม่มี Model ใดเหมาะ ต้องใช้ GPT-4 แทน"
+    ],
+    answer: 1,
+    explain: "Claude Sonnet เป็น Model ที่ Anthropic แนะนำสำหรับงาน coding เพราะมี balance ดีที่สุดระหว่าง intelligence และ speed. Haiku เร็วแต่เหมาะงานง่าย, Opus ฉลาดสุดแต่ช้าและแพงกว่า"
+  },
+  {
+    id: 4,
+    tag: "CLAUDE.md",
+    text: "ไฟล์ CLAUDE.md ใน Claude Code มีหน้าที่อะไร?",
+    options: [
+      "เก็บ log การทำงานของ Claude",
+      "เป็น config ไฟล์สำหรับตั้งค่า API Key",
+      "เก็บ project context และ instructions ที่ Claude จะอ่านอัตโนมัติทุกครั้งที่เริ่มงาน",
+      "เป็น markdown documentation สำหรับ users"
+    ],
+    answer: 2,
+    explain: "CLAUDE.md คือ 'working memory' ของ Claude Code — Claude จะอ่านไฟล์นี้อัตโนมัติทุกครั้งที่เริ่ม session ทำให้จำ project context, coding rules, commands ต่างๆ ได้ตลอด"
+  },
+  {
+    id: 5,
+    tag: "Skills",
+    text: "วิธีใดถูกต้องสำหรับการเรียกใช้ Skill ใน Claude Cowork?",
+    options: [
+      "ต้องพิมพ์ชื่อ Skill เป็นภาษาอังกฤษเท่านั้น",
+      "พิมพ์คำสั่งตามธรรมชาติ เช่น 'สร้าง Excel' หรือใช้ /slash command เช่น /xlsx",
+      "ต้อง install ทุก Skill ก่อนใช้งานเสมอ",
+      "Skill ใช้ได้เฉพาะใน Claude Code ไม่ได้ใน Cowork"
+    ],
+    answer: 1,
+    explain: "Claude สามารถ detect Skill ที่เหมาะสมได้อัตโนมัติจากคำสั่งธรรมชาติ เช่น 'สร้าง Excel รายงาน' จะเรียก xlsx skill, หรือใช้ /slash command เช่น /xlsx, /docx, /engineering:debug"
+  },
+  {
+    id: 6,
+    tag: "Connectors / MCP",
+    text: "MCP (Model Context Protocol) คืออะไรในบริบทของ Claude?",
+    options: [
+      "โปรโตคอลสำหรับการเข้ารหัสข้อมูล",
+      "มาตรฐานสำหรับเชื่อมต่อ Claude กับ external tools เช่น GitHub, Slack, Notion",
+      "ชื่อ programming language สำหรับสร้าง AI",
+      "ระบบจัดการ memory ของ Claude"
+    ],
+    answer: 1,
+    explain: "MCP (Model Context Protocol) คือ open standard ที่ Anthropic พัฒนาขึ้นเพื่อให้ Claude เชื่อมต่อกับ external services ได้ ทำให้ Claude อ่าน/เขียนข้อมูลใน GitHub, Slack, Notion, Datadog ฯลฯ ได้โดยตรง"
+  },
+  {
+    id: 7,
+    tag: "Prompt Engineering",
+    text: "ข้อใดคือ Prompt ที่เขียนได้ดีที่สุดสำหรับงาน IT?",
+    options: [
+      "'แก้ bug ด่วน'",
+      "'ช่วยเขียน code Python'",
+      "'คุณเป็น Senior Backend Engineer ที่เชี่ยวชาญ FastAPI + PostgreSQL — review function นี้ให้ฉัน ระบุ: security issues, performance bottlenecks, และ missing error handling'",
+      "'เขียน Python ให้หน่อย อย่าใช้ loop'"
+    ],
+    answer: 2,
+    explain: "Prompt ที่ดีต้องมี: Role/Persona (Senior Backend Engineer), Context (FastAPI + PostgreSQL), งานที่ต้องการ (review function), Output format ที่ชัด (security, performance, error handling)"
+  },
+  {
+    id: 8,
+    tag: "Import / Export",
+    text: "เมื่อต้องการ Export ข้อมูลจาก Claude Chat เพื่อ backup ควรทำอย่างไร?",
+    options: [
+      "Screenshot ทุก conversation ด้วยตนเอง",
+      "ไปที่ Settings → Privacy → Export your data — Anthropic จะส่ง download link ทาง email",
+      "Copy/paste ข้อความทั้งหมดลง text file",
+      "Claude Chat ไม่รองรับการ Export ข้อมูล"
+    ],
+    answer: 1,
+    explain: "Claude Chat รองรับ Data Export ผ่าน Settings → Privacy → 'Export your data' — Anthropic จะส่ง download link ทาง email ภายใน 24 ชั่วโมง ได้รับไฟล์ ZIP ที่มี conversations.json, projects.json, account.json"
+  },
+  {
+    id: 9,
+    tag: "Data Migration",
+    text: "สิ่งใดที่ไม่สามารถย้าย (migrate) จาก Claude Account เดิมไปยัง Account ใหม่ได้โดยตรง?",
+    options: [
+      "System Prompt ใน Projects",
+      "Conversation History (ประวัติการสนทนา)",
+      "Knowledge Files ที่ upload ไว้",
+      "Custom Skills ที่สร้างเอง"
+    ],
+    answer: 1,
+    explain: "Conversation History ผูกกับ account เดิมบน Anthropic servers — ไม่สามารถ import เข้า account ใหม่ได้โดยตรง (มีแค่ read-only JSON export), ส่วน System Prompts, Files และ Custom Skills ย้ายได้ด้วยการ copy-paste หรือ copy folder"
+  },
+  {
+    id: 10,
+    tag: "Claude Cowork",
+    text: "Scheduled Tasks ใน Claude Cowork ใช้ทำอะไร?",
+    options: [
+      "กำหนดเวลา restart application อัตโนมัติ",
+      "ตั้งเวลาให้ Claude ทำงานซ้ำๆ อัตโนมัติ เช่น 'ทุกเช้า 8:00 สรุปงานจาก ClickUp และส่ง Slack'",
+      "จัดตารางนัดหมายใน Google Calendar",
+      "ตั้ง reminder ให้ผู้ใช้เปิดแอป"
+    ],
+    answer: 1,
+    explain: "Scheduled Tasks ใน Cowork ช่วยให้ Claude ทำงานอัตโนมัติตามเวลาที่กำหนด เช่น ทุกเช้าดึงข้อมูลจาก ClickUp → สรุป → ส่ง Slack โดยไม่ต้องสั่งด้วยตนเองทุกวัน รองรับทั้ง cron schedule และ one-time future tasks"
+  }
+];
+const questions = JSON.parse(localStorage.getItem('claude_questions') || 'null') || DEFAULT_QUESTIONS;
+
+/* ── STATE ── */
+let userName = '';
+let userNick = '';
+let testType = '';   // 'pre' | 'post'
+let userAnswers = new Array(questions.length).fill(-1);
+
+/* ── LANDING ── */
+function selectType(type) {
+  testType = type;
+  document.getElementById('btn-pre').classList.toggle('selected', type === 'pre');
+  document.getElementById('btn-post').classList.toggle('selected', type === 'post');
+}
+
+function startTest() {
+  const name = document.getElementById('inputName').value.trim();
+  const nick = document.getElementById('inputNick').value.trim();
+  const err  = document.getElementById('errMsg');
+
+  if (!name || !nick || !testType) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+  userName = name;
+  userNick = nick;
+  userAnswers = new Array(questions.length).fill(-1);
+  buildQuiz();
+  showScreen('screen-quiz');
+}
+
+/* ── BUILD QUIZ ── */
+function buildQuiz() {
+  // Header
+  const badge = document.getElementById('quizBadge');
+  badge.className = 'quiz-type-badge ' + (testType === 'pre' ? 'badge-pre' : 'badge-post');
+  badge.textContent = testType === 'pre' ? '🔬 Pre-test' : '🎓 Post-test';
+  document.getElementById('quizUserName').textContent = userName;
+  document.getElementById('quizUserNick').textContent = 'ชื่อเล่น: ' + userNick;
+
+  // Render questions
+  const list = document.getElementById('questionsList');
+  list.innerHTML = '';
+
+  questions.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = 'q-card-' + qi;
+
+    const optionsHtml = q.options.map((opt, oi) => `
+      <div class="option-item" id="opt-${qi}-${oi}" onclick="selectAnswer(${qi}, ${oi})">
+        <div class="option-key">${['A','B','C','D'][oi]}</div>
+        <div class="option-text">${opt}</div>
+      </div>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="q-num"><div class="q-num-dot">${qi+1}</div> ข้อที่ ${qi+1}</div>
+      <div class="q-tag">${q.tag}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="options-list">${optionsHtml}</div>
+    `;
+    list.appendChild(card);
+  });
+
+  updateProgress();
+}
+
+function selectAnswer(qi, oi) {
+  // Deselect previous
+  const prev = userAnswers[qi];
+  if (prev !== -1) {
+    document.getElementById(`opt-${qi}-${prev}`).classList.remove('selected');
+  }
+  // Select new
+  userAnswers[qi] = oi;
+  document.getElementById(`opt-${qi}-${oi}`).classList.add('selected');
+  document.getElementById('q-card-' + qi).classList.add('answered');
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = userAnswers.filter(a => a !== -1).length;
+  const pct  = Math.round((done / questions.length) * 100);
+  document.getElementById('progBar').style.width = pct + '%';
+  document.getElementById('progNum').textContent = `${done} / ${questions.length} ข้อที่ตอบแล้ว`;
+  document.getElementById('answeredCount').innerHTML = `ตอบแล้ว <strong>${done}</strong> / ${questions.length} ข้อ`;
+  document.getElementById('btnSubmit').disabled = done < questions.length;
+}
+
+/* ── SUBMIT ── */
+function submitQuiz() {
+  let correct = 0;
+  questions.forEach((q, qi) => {
+    if (userAnswers[qi] === q.answer) correct++;
+  });
+
+  const total  = questions.length;
+  const pct    = Math.round((correct / total) * 100);
+  const passed = pct >= 51;
+
+  // ── บันทึกผลลง localStorage ──
+  saveResult({ correct, total, pct, passed });
+
+  buildResults(correct, total, pct, passed);
+  showScreen('screen-result');
+
+  setTimeout(() => {
+    document.getElementById('resultBar').style.width = pct + '%';
+  }, 200);
+}
+
+/* ── SAVE RESULT ── */
+function saveResult({ correct, total, pct, passed }) {
+  const now = new Date();
+  const pad = n => String(n).padStart(2,'0');
+  const dateStr = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
+  const record = {
+    id:        now.getTime(),
+    name:      userName,
+    nick:      userNick,
+    testType,
+    correct,
+    total,
+    pct,
+    passed: testType === 'post' ? passed : null,   // Pre-test ไม่มี pass/fail
+    answers:   [...userAnswers],
+    date:      dateStr
+  };
+
+  const key  = 'claude_test_results';
+  const prev = JSON.parse(localStorage.getItem(key) || '[]');
+  prev.push(record);
+  localStorage.setItem(key, JSON.stringify(prev));
+}
+
+/* ── BUILD RESULTS ── */
+function buildResults(correct, total, pct, passed) {
+  const wrong = total - correct;
+  const hero  = document.getElementById('resultHero');
+
+  // Hero class
+  if (testType === 'pre') {
+    hero.className = 'result-hero pretest';
+    document.getElementById('resultEmoji').textContent = '📊';
+    document.getElementById('resultStatus').textContent = 'ผลการทำ Pre-test';
+  } else {
+    hero.className = 'result-hero ' + (passed ? 'pass' : 'fail');
+    document.getElementById('resultEmoji').textContent = passed ? '🎉' : '📚';
+    document.getElementById('resultStatus').textContent = passed ? 'ผ่านการทดสอบ! ยอดเยี่ยม!' : 'ยังไม่ผ่าน — สู้ต่อไป!';
+  }
+
+  document.getElementById('resultNameLine').textContent = `${userName} (${userNick})`;
+  document.getElementById('resultScore').textContent = `${correct}/${total}`;
+  document.getElementById('resultPctLabel').textContent = `${pct}%`;
+
+  // Bar color
+  const bar = document.getElementById('resultBar');
+  bar.style.background = pct >= 51
+    ? 'linear-gradient(90deg,#059669,#34D399)'
+    : 'linear-gradient(90deg,#DC2626,#F87171)';
+
+  // Stats
+  document.getElementById('resultStats').innerHTML = `
+    <div class="stat-row"><span class="stat-icon">✅</span> ตอบถูก <strong>${correct}</strong> ข้อ</div>
+    <div class="stat-row"><span class="stat-icon">❌</span> ตอบผิด <strong>${wrong}</strong> ข้อ</div>
+    <div class="stat-row"><span class="stat-icon">📊</span> คะแนน <strong>${pct}%</strong></div>
+    <div class="stat-row"><span class="stat-icon">🎯</span> เกณฑ์ผ่าน <strong>51%</strong></div>
+  `;
+
+  // Message
+  const msgEl = document.getElementById('resultMsg');
+  if (testType === 'pre') {
+    msgEl.textContent = pct >= 70
+      ? `คุณมีพื้นฐานความรู้เรื่อง Claude ดีมากอยู่แล้ว! ศึกษา E-book เพื่อ upgrade ความรู้ให้ครบถ้วนยิ่งขึ้น`
+      : pct >= 40
+        ? `คุณมีพื้นฐานบ้างแล้ว ศึกษา E-book เพิ่มเติมเพื่อเติมเต็มความเข้าใจ แล้วมาทำ Post-test เพื่อวัดผล`
+        : `ยังไม่คุ้นเคยกับ Claude มากนัก — ไม่เป็นไร! ศึกษา E-book ให้ครบทุก section แล้วมาทำ Post-test อีกครั้ง`;
+  } else {
+    msgEl.textContent = passed
+      ? `ยอดเยี่ยม! คุณผ่านเกณฑ์ ${pct}% เข้าใจการใช้งาน Claude ครบทุกด้านแล้ว สามารถนำความรู้ไปประยุกต์ใช้กับงานจริงได้เลย!`
+      : `คุณได้ ${pct}% ยังต่ำกว่าเกณฑ์ 51% กลับไปทบทวน E-book ในหัวข้อที่ตอบผิด แล้วมาทำ Post-test ใหม่อีกครั้ง`;
+  }
+
+  // Review list
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = '';
+  questions.forEach((q, qi) => {
+    const ua     = userAnswers[qi];
+    const isCorr = ua === q.answer;
+    const item   = document.createElement('div');
+    item.className = 'review-item';
+
+    let answersHtml = '';
+    if (!isCorr) {
+      answersHtml = `
+        <div class="review-answer user-wrong">❌ คุณตอบ: ${q.options[ua]}</div>
+        <div class="review-answer correct-ans">✅ เฉลย: ${q.options[q.answer]}</div>
+      `;
+    } else {
+      answersHtml = `<div class="review-answer user-correct">✅ ถูกต้อง: ${q.options[ua]}</div>`;
+    }
+
+    item.innerHTML = `
+      <div class="review-q-row">
+        <div class="review-status-icon">${isCorr ? '✅' : '❌'}</div>
+        <div class="review-q-text">ข้อ ${qi+1}: ${q.text}</div>
+      </div>
+      <div class="review-answer-row">${answersHtml}</div>
+      <div class="review-explain">💡 ${q.explain}</div>
+    `;
+    reviewList.appendChild(item);
+  });
+
+  // Action buttons
+  const actions = document.getElementById('resultActions');
+  actions.innerHTML = '';
+
+  if (testType === 'pre') {
+    actions.innerHTML = `
+      <a href="claude-guide-ebook.html" class="btn-action btn-study">📖 ไปเรียน E-book เลย →</a>
+      <button class="btn-action btn-outline" onclick="resetToLanding()">🔄 ทำใหม่อีกครั้ง</button>
+    `;
+  } else {
+    if (passed) {
+      actions.innerHTML = `
+        <button class="btn-action btn-primary" onclick="resetToLanding()">🎓 ทำ Post-test อีกครั้ง</button>
+        <a href="claude-guide-ebook.html" class="btn-action btn-outline">📖 กลับ E-book</a>
+      `;
+    } else {
+      actions.innerHTML = `
+        <a href="claude-guide-ebook.html" class="btn-action btn-study">📚 กลับไปศึกษาใหม่ →</a>
+        <button class="btn-action btn-outline" onclick="resetToLanding()">🔄 ทำ Post-test ใหม่</button>
+      `;
+    }
+  }
+}
+
+/* ── HELPERS ── */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetToLanding() {
+  userAnswers = new Array(questions.length).fill(-1);
+  testType = '';
+  document.getElementById('btn-pre').classList.remove('selected');
+  document.getElementById('btn-post').classList.remove('selected');
+  showScreen('screen-landing');
+}
+
+/* ── Enter key support ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('screen-landing').classList.contains('active')) {
+    startTest();
+  }
+});
+</script>
+
+<!-- FOOTER -->
+<footer style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:rgba(255,255,255,0.55);text-align:center;padding:28px 20px;font-size:12px;line-height:1.8;margin-top:40px;">
+  <div style="font-size:24px;margin-bottom:8px">🤖</div>
+  <strong style="color:#fff;font-size:13px">Claude Complete Guide | คู่มือ Claude ฉบับสมบูรณ์</strong><br>
+  Developer By Most • อัปเดต May 2025<br><br>
+  <span style="color:rgba(255,255,255,0.3);font-size:11px">Claude Chat · Claude Code · Claude Cowork · Haiku · Sonnet · Opus<br>
+  © 2025 Anthropic — เนื้อหาในคู่มือนี้อิงจากข้อมูล official จาก docs.claude.com</span>
+</footer>
+</body>
+</html>
