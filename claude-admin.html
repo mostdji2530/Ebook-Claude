@@ -221,6 +221,9 @@ body{font-family:'Segoe UI','Sarabun',sans-serif;background:var(--bg);min-height
       <a href="claude-test.html" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:10px;background:linear-gradient(135deg,#F59E0B,#D97757);color:#fff;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 2px 8px rgba(217,119,87,.35);transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
         📝 หน้าทดสอบ
       </a>
+      <button id="btnSyncSheets" onclick="fetchFromSheets()" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:10px;background:linear-gradient(135deg,#059669,#06B6D4);color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;box-shadow:0 2px 8px rgba(5,150,105,.3);transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+        🔄 โหลดจาก Google Sheets
+      </button>
       <div style="font-size:13px;color:var(--muted);background:#fff;padding:8px 14px;border-radius:8px;border:1px solid var(--border)">
         👤 Admin &nbsp;|&nbsp; <span id="adminUser"></span>
       </div>
@@ -472,8 +475,59 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* ── GOOGLE SHEETS INTEGRATION ── */
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwhPKnRFzh1nR__6aY6-zMSWBt5D4WpKQ4_dCUnzaqpOqwNQBZLgs5An-N26I2tP7KN2A/exec';
+let sheetsData = null;
+let sheetsLoaded = false;
+
+function fetchFromSheets() {
+  const btn = document.getElementById('btnSyncSheets');
+  if (btn) { btn.disabled = true; btn.innerHTML = '⏳ กำลังโหลด...'; }
+  sheetsLoaded = false;
+
+  var old = document.getElementById('sheets-jsonp');
+  if (old) old.remove();
+
+  var sc = document.createElement('script');
+  sc.id = 'sheets-jsonp';
+  sc.src = SHEETS_URL + '?action=read&callback=handleSheetData&_t=' + Date.now();
+  sc.onerror = function() {
+    if (btn) { btn.disabled = false; btn.innerHTML = '🔄 โหลดจาก Google Sheets'; }
+    alert('โหลดไม่สำเร็จ กรุณาลองใหม่');
+  };
+  document.body.appendChild(sc);
+
+  setTimeout(function() {
+    if (!sheetsLoaded) {
+      if (btn) { btn.disabled = false; btn.innerHTML = '🔄 โหลดจาก Google Sheets'; }
+      alert('หมดเวลา — ไม่สามารถเชื่อมต่อ Sheets ได้');
+    }
+  }, 12000);
+}
+
+function handleSheetData(data) {
+  sheetsLoaded = true;
+  // Normalize pct to number
+  sheetsData = data.map(function(r) {
+    return Object.assign({}, r, { pct: parseInt(r.pct) || 0 });
+  });
+  const btn = document.getElementById('btnSyncSheets');
+  if (btn) {
+    btn.disabled = false;
+    btn.innerHTML = '✅ Sheets (' + sheetsData.length + ' รายการ)';
+    btn.style.background = 'linear-gradient(135deg,#059669,#059669)';
+  }
+  const now = new Date();
+  document.getElementById('reportDate').textContent =
+    '📡 ข้อมูลจาก Google Sheets ณ ' + now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}) +
+    ' — ' + sheetsData.length + ' รายการ (ทุก device)';
+  renderDashboard();
+  if (document.getElementById('tab-records').style.display === 'block') renderRecords();
+}
+
 /* ── DATA ── */
 function getData() {
+  if (sheetsData !== null) return sheetsData;
   return JSON.parse(localStorage.getItem('claude_test_results') || '[]');
 }
 
@@ -526,14 +580,17 @@ function renderDashboard() {
     </div>
   `;
 
-  // Chart per question
+  // Chart per question (ใช้ได้เฉพาะข้อมูลจาก localStorage ที่มี answers)
+  const hasAnswers = data.some(r => r.answers);
   const perQ = questions.map((q,qi) => {
-    const correctCount = data.filter(r => r.answers[qi] === q.answer).length;
-    const pct = data.length ? Math.round(correctCount/data.length*100) : 0;
+    const correctCount = hasAnswers ? data.filter(r => r.answers && r.answers[qi] === q.answer).length : 0;
+    const pct = (hasAnswers && data.length) ? Math.round(correctCount/data.length*100) : 0;
     return { label: `ข้อ ${qi+1}`, pct, tag: q.tag };
   });
 
-  document.getElementById('chartPerQ').innerHTML = perQ.map(q => {
+  document.getElementById('chartPerQ').innerHTML = !hasAnswers
+    ? `<div style="color:var(--muted);font-size:13px;padding:20px;text-align:center">📡 ข้อมูลจาก Google Sheets ไม่มีรายละเอียดคำตอบรายข้อ<br>กราฟนี้ใช้ได้เฉพาะข้อมูล localStorage บนเครื่องนี้</div>`
+    : perQ.map(q => {
     const color = q.pct >= 70 ? '#059669' : q.pct >= 50 ? '#F59E0B' : '#DC2626';
     return `
       <div class="bar-row">
