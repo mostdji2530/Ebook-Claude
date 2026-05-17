@@ -391,10 +391,16 @@ body{font-family:'Segoe UI','Sarabun',sans-serif;background:var(--bg);min-height
 
       <!-- Admin list -->
       <div>
-        <div style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">👥 รายชื่อ Admin ทั้งหมด</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+          <div style="font-size:15px;font-weight:700;color:var(--dark)">👥 รายชื่อ Admin ทั้งหมด</div>
+          <div style="display:flex;gap:8px;">
+            <button id="btnSyncAdminsFrom" onclick="syncAdminsFromSheets()" style="padding:7px 14px;border-radius:8px;border:none;background:linear-gradient(135deg,#059669,#06B6D4);color:#fff;font-size:12px;font-weight:700;cursor:pointer;">📥 โหลดจาก Sheets</button>
+            <button id="btnSyncAdminsTo" onclick="syncAdminsToSheets()" style="padding:7px 14px;border-radius:8px;border:none;background:linear-gradient(135deg,#7C3AED,#0f3460);color:#fff;font-size:12px;font-weight:700;cursor:pointer;">📤 บันทึกขึ้น Sheets</button>
+          </div>
+        </div>
         <div id="adminListWrap"></div>
-        <div style="font-size:11px;color:var(--muted);margin-top:10px;padding:10px;background:#fef9ec;border-radius:8px;border:1px solid #fcd34d">
-          ⚠️ Password จะถูกแสดงเป็น ••• เพื่อความปลอดภัย<br>ข้อมูลบันทึกอยู่ใน localStorage ของเครื่องนี้เท่านั้น
+        <div id="adminSyncStatus" style="font-size:11px;color:var(--muted);margin-top:10px;padding:10px;background:#fef9ec;border-radius:8px;border:1px solid #fcd34d">
+          ⚠️ Password จะถูกแสดงเป็น ••• เพื่อความปลอดภัย<br>กด "บันทึกขึ้น Sheets" เพื่อ sync ไปทุก device
         </div>
       </div>
     </div>
@@ -852,6 +858,67 @@ function deleteQuestion(idx) {
    ══════════════════════════════════ */
 function saveAdminsToStorage() {
   localStorage.setItem('claude_admins', JSON.stringify(adminList));
+}
+
+function syncAdminsToSheets() {
+  const btn = document.getElementById('btnSyncAdminsTo');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ กำลังบันทึก...'; }
+  var old = document.getElementById('admins-save-jsonp');
+  if (old) old.remove();
+  var sc = document.createElement('script');
+  sc.id = 'admins-save-jsonp';
+  var encoded = encodeURIComponent(JSON.stringify(adminList));
+  sc.src = SHEETS_URL + '?action=saveAdmins&callback=handleAdminSaved&data=' + encoded + '&_t=' + Date.now();
+  sc.onerror = function() {
+    if (btn) { btn.disabled = false; btn.textContent = '📤 บันทึกขึ้น Sheets'; }
+    setAdminStatus('❌ บันทึกไม่สำเร็จ กรุณาลองใหม่', '#fee2e2', '#991b1b');
+  };
+  document.body.appendChild(sc);
+  setTimeout(function() {
+    if (btn && btn.disabled) { btn.disabled = false; btn.textContent = '📤 บันทึกขึ้น Sheets'; setAdminStatus('⏱️ หมดเวลา กรุณาลองใหม่', '#fef9ec', '#92400e'); }
+  }, 12000);
+}
+
+function handleAdminSaved(res) {
+  const btn = document.getElementById('btnSyncAdminsTo');
+  if (btn) { btn.disabled = false; btn.textContent = '✅ บันทึกแล้ว'; setTimeout(() => { btn.textContent = '📤 บันทึกขึ้น Sheets'; }, 3000); }
+  setAdminStatus('✅ บันทึกรายชื่อ Admin ขึ้น Google Sheets เรียบร้อยแล้ว (ใช้ได้ทุก device)', '#d1fae5', '#065f46');
+}
+
+function syncAdminsFromSheets() {
+  const btn = document.getElementById('btnSyncAdminsFrom');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ กำลังโหลด...'; }
+  var old = document.getElementById('admins-load-jsonp');
+  if (old) old.remove();
+  var sc = document.createElement('script');
+  sc.id = 'admins-load-jsonp';
+  sc.src = SHEETS_URL + '?action=readAdmins&callback=handleAdminLoaded&_t=' + Date.now();
+  sc.onerror = function() {
+    if (btn) { btn.disabled = false; btn.textContent = '📥 โหลดจาก Sheets'; }
+    setAdminStatus('❌ โหลดไม่สำเร็จ', '#fee2e2', '#991b1b');
+  };
+  document.body.appendChild(sc);
+  setTimeout(function() {
+    if (btn && btn.disabled) { btn.disabled = false; btn.textContent = '📥 โหลดจาก Sheets'; }
+  }, 12000);
+}
+
+function handleAdminLoaded(data) {
+  const btn = document.getElementById('btnSyncAdminsFrom');
+  if (btn) { btn.disabled = false; btn.textContent = '📥 โหลดจาก Sheets'; }
+  if (!data || data.length === 0) {
+    setAdminStatus('📭 ยังไม่มีข้อมูล Admin ใน Sheets — กด "บันทึกขึ้น Sheets" เพื่อ sync ครั้งแรก', '#fef9ec', '#92400e');
+    return;
+  }
+  adminList = data;
+  saveAdminsToStorage();
+  renderAdminManager();
+  setAdminStatus('✅ โหลด Admin จาก Sheets แล้ว ' + data.length + ' คน', '#d1fae5', '#065f46');
+}
+
+function setAdminStatus(msg, bg, color) {
+  var el = document.getElementById('adminSyncStatus');
+  if (el) { el.innerHTML = msg; el.style.background = bg; el.style.color = color; el.style.borderColor = color; }
 }
 
 function renderAdminManager() {
