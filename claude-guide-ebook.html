@@ -1253,116 +1253,346 @@ html { scroll-behavior: smooth; }
     <button class="level-tab" onclick="switchLevel('cowork', 'adv', this)">🔴 Advanced</button>
   </div>
 
-  <!-- Beginner -->
+  <!-- ═══════════════ BEGINNER ═══════════════ -->
   <div class="level-content active" id="cowork-beginner">
+
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;color:#D97757">🚀 เริ่มต้นใช้งาน Claude Cowork / Getting Started</h3>
     <div class="setup-steps">
       <div class="step">
         <div class="step-num orange">1</div>
         <div class="step-body">
-          <div class="step-title">ดาวน์โหลดและติดตั้ง / Download</div>
-          <div class="step-desc">ดาวน์โหลด Claude Desktop App จาก <strong>claude.ai/download</strong> (Mac / Windows) เปิดแอปและ Login</div>
+          <div class="step-title">ดาวน์โหลดและติดตั้ง / Download & Install</div>
+          <div class="step-desc">ไปที่ <strong>claude.ai/download</strong> → เลือก Mac หรือ Windows → ติดตั้งและเปิดแอป → Login ด้วย Anthropic Account เดียวกับที่ใช้บน Web<br><br>
+          <span style="color:#059669;font-size:12px">✅ ต้องการ: macOS 12+ หรือ Windows 10+ และบัญชี Claude (Free/Pro)</span></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num orange">2</div>
         <div class="step-body">
           <div class="step-title">เปิดใช้ Cowork Mode</div>
-          <div class="step-desc">ใน Desktop App เลือก "Cowork" mode จาก sidebar หรือ Settings → เปิดใช้งาน Cowork (Research Preview)</div>
+          <div class="step-desc">เมื่อเปิดแอปแล้ว ให้มองหา icon <strong>🤝 Cowork</strong> ใน sidebar ซ้ายมือ → คลิกเพื่อสลับโหมด<br><br>
+          หากไม่เห็น: ไปที่ <strong>Settings ⚙️ → Features → เปิดใช้งาน Cowork (Research Preview)</strong><br><br>
+          <span style="color:#F59E0B;font-size:12px">⚠️ Cowork ยังอยู่ใน Research Preview — อาจมี update บ่อย</span></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num orange">3</div>
         <div class="step-body">
-          <div class="step-title">เลือก Project Folder</div>
-          <div class="step-desc">กด "Select Folder" เพื่อให้ Claude เข้าถึงไฟล์ในโฟลเดอร์ที่ต้องการ Claude จะสามารถอ่าน-เขียนไฟล์ได้</div>
+          <div class="step-title">เลือก Project Folder / Select Folder</div>
+          <div class="step-desc">คลิกปุ่ม <strong>"Select Folder"</strong> → เลือก folder ที่ต้องการให้ Claude ทำงานด้วย<br><br>
+          Claude จะสามารถ: <strong>อ่านไฟล์, เขียนไฟล์, สร้างไฟล์ใหม่</strong> ใน folder นั้น<br><br>
+          💡 <em>แนะนำ:</em> สร้าง folder เฉพาะสำหรับ Cowork เช่น <code>Documents/Claude/Projects/ชื่องาน</code><br>
+          <span style="color:#059669;font-size:12px">✅ Claude จะจำ folder นี้ข้ามเซสชัน — ไม่ต้องเลือกใหม่ทุกครั้ง</span></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num orange">4</div>
         <div class="step-body">
-          <div class="step-title">ลองสั่งงานแรก</div>
-          <div class="step-desc">พิมพ์งานที่ต้องการ เช่น "อ่านไฟล์ log นี้และสรุป error ที่เกิดบ่อยที่สุด" หรือ "สร้าง Excel report จาก CSV นี้" Claude จะทำให้อัตโนมัติ</div>
+          <div class="step-title">สร้าง CLAUDE.md — ให้ Claude จำข้อมูลสำคัญ</div>
+          <div class="step-desc">CLAUDE.md คือ "บันทึกความจำ" ของ Claude — อ่านอัตโนมัติทุก session<br><br>
+          วิธีสร้าง: สั่ง Claude ว่า <em>"สร้างไฟล์ CLAUDE.md สำหรับโปรเจกต์นี้ บันทึกว่าฉันชื่อ [ชื่อ] ทำงานที่ [บริษัท] โปรเจกต์นี้คือ [อธิบาย]"</em><br><br>
+          <span style="color:#7C3AED;font-size:12px">🧠 Claude จะจำทุกอย่างใน CLAUDE.md โดยไม่ต้องบอกซ้ำ</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num orange">5</div>
+        <div class="step-body">
+          <div class="step-title">ลองสั่งงานครั้งแรก</div>
+          <div class="step-desc">พิมพ์คำสั่งเป็นภาษาธรรมชาติ — Claude จะทำให้อัตโนมัติ ไม่ต้องรู้โค้ด</div>
         </div>
       </div>
     </div>
+
+    <!-- 5 First Commands -->
+    <h3 style="font-size:15px;font-weight:700;margin:24px 0 14px;color:#D97757">💬 5 คำสั่งแรกที่ควรลอง / First 5 Commands</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:700;color:#D97757;margin-bottom:6px">📄 งานเอกสาร</div>
+        <div style="font-size:13px;color:#1a1a2e;font-style:italic;">"อ่านไฟล์ทั้งหมดใน folder นี้ และสรุปให้ฉัน"</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#f0fdf4,#fff);border:1px solid #bbf7d0;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:700;color:#059669;margin-bottom:6px">📊 งาน Excel</div>
+        <div style="font-size:13px;color:#1a1a2e;font-style:italic;">"สร้าง Excel สรุปยอดขายรายเดือนจากข้อมูลนี้"</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#eff6ff,#fff);border:1px solid #bfdbfe;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:700;color:#1E40AF;margin-bottom:6px">📝 งาน Word</div>
+        <div style="font-size:13px;color:#1a1a2e;font-style:italic;">"เขียนรายงานสรุปการประชุม แล้วบันทึกเป็นไฟล์ .docx"</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#faf5ff,#fff);border:1px solid #e9d5ff;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:700;color:#7C3AED;margin-bottom:6px">🎯 งาน Presentation</div>
+        <div style="font-size:13px;color:#1a1a2e;font-style:italic;">"สร้าง Slide 10 หน้าจากไฟล์ข้อมูลนี้ เป็น .pptx"</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#f0fdf4,#fff);border:1px solid #bbf7d0;border-radius:12px;padding:16px;grid-column:1/-1">
+        <div style="font-size:11px;font-weight:700;color:#059669;margin-bottom:6px">🔄 งานประจำวัน (BFF Example)</div>
+        <div style="font-size:13px;color:#1a1a2e;font-style:italic;">"เปิดไฟล์ยอดขายวันนี้ สร้าง Excel สรุป Top 5 สินค้า และเขียน caption สำหรับ Instagram พร้อม hashtag"</div>
+      </div>
+    </div>
+
+    <div class="info-box tip-box">
+      <span class="info-icon">💡</span>
+      <div class="info-text"><strong>เคล็ดลับ:</strong> พูดกับ Claude เหมือนพูดกับผู้ช่วยจริงๆ — ยิ่งบอกรายละเอียดมาก ผลลัพธ์ยิ่งดี เช่น บอกว่า "ทำสำหรับ presentation กับลูกค้า" Claude จะปรับสไตล์ให้เอง</div>
+    </div>
   </div>
 
-  <!-- Intermediate -->
+  <!-- ═══════════════ INTERMEDIATE ═══════════════ -->
   <div class="level-content" id="cowork-mid">
-    <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">🔌 การติดตั้ง Plugins / Install Plugins</h3>
-    <div class="step-desc" style="font-size:13px;color:#64748b;margin-bottom:16px">Plugins ขยายความสามารถของ Cowork ให้เชื่อมต่อกับ Services ภายนอก</div>
+
+    <!-- Skills -->
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:#D97757">⚡ Skills — ความสามารถพิเศษของ Claude</h3>
+    <div style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.7">Skills คือ "โหมดผู้เชี่ยวชาญ" ที่ทำให้ Claude รู้ขั้นตอนและ output format ที่ถูกต้องสำหรับงานนั้นๆ โดยอัตโนมัติ — ไม่ต้องอธิบายซ้ำทุกครั้ง</div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px">
+      <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:22px;margin-bottom:6px">📄</div>
+        <div style="font-weight:700;font-size:12px;margin-bottom:3px">docx</div>
+        <div style="font-size:11px;color:#64748b">สร้างไฟล์ Word</div>
+      </div>
+      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:22px;margin-bottom:6px">📊</div>
+        <div style="font-weight:700;font-size:12px;margin-bottom:3px">xlsx</div>
+        <div style="font-size:11px;color:#64748b">สร้างไฟล์ Excel</div>
+      </div>
+      <div style="background:#faf5ff;border:1px solid #e9d5ff;border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:22px;margin-bottom:6px">🎯</div>
+        <div style="font-weight:700;font-size:12px;margin-bottom:3px">pptx</div>
+        <div style="font-size:11px;color:#64748b">สร้าง Slides</div>
+      </div>
+      <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:22px;margin-bottom:6px">📋</div>
+        <div style="font-weight:700;font-size:12px;margin-bottom:3px">pdf</div>
+        <div style="font-size:11px;color:#64748b">สร้าง PDF</div>
+      </div>
+    </div>
+
+    <h4 style="font-size:14px;font-weight:700;margin-bottom:10px">วิธีเรียกใช้ Skill / How to Use a Skill</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px">
+      <div style="background:#1a1a2e;border-radius:10px;padding:16px">
+        <div style="color:#F59E0B;font-size:11px;font-weight:700;margin-bottom:8px">วิธีที่ 1 — พูดตามธรรมชาติ</div>
+        <div style="color:#e2e8f0;font-size:12px;line-height:1.8;font-style:italic">
+          "สร้าง Excel จากข้อมูลนี้"<br>
+          "เขียนรายงานเป็น Word doc"<br>
+          "ทำ Slide สรุปผลประชุม"<br>
+          "แปลงข้อมูลนี้เป็น PDF"
+        </div>
+      </div>
+      <div style="background:#1a1a2e;border-radius:10px;padding:16px">
+        <div style="color:#06B6D4;font-size:11px;font-weight:700;margin-bottom:8px">วิธีที่ 2 — /slash command</div>
+        <div style="color:#e2e8f0;font-size:12px;line-height:1.8;font-family:monospace">
+          /xlsx → Excel skill<br>
+          /docx → Word skill<br>
+          /pptx → PowerPoint skill<br>
+          /pdf &nbsp;→ PDF skill
+        </div>
+      </div>
+    </div>
+
+    <!-- Connectors / Plugins -->
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:#D97757">🔌 Connectors & Plugins — เชื่อมต่อ Tools ภายนอก</h3>
+    <div style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.7">Connectors ทำให้ Claude อ่านและเขียนข้อมูลใน tools ที่ทีมใช้งานอยู่ได้โดยตรง — ไม่ต้อง copy-paste ข้ามแอป</div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
-      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center">
+      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px">
         <div style="font-size:24px;margin-bottom:8px">📊</div>
         <div style="font-weight:700;font-size:13px;margin-bottom:4px">ClickUp</div>
-        <div style="font-size:11px;color:#64748b">จัดการ Tasks & Projects</div>
+        <div style="font-size:11px;color:#64748b;line-height:1.6">ดู Tasks ที่ค้าง · สร้าง Task ใหม่ · อัปเดตสถานะ · ดู Timeline ของทีม</div>
       </div>
-      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center">
+      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px">
         <div style="font-size:24px;margin-bottom:8px">💬</div>
         <div style="font-weight:700;font-size:13px;margin-bottom:4px">Slack</div>
-        <div style="font-size:11px;color:#64748b">ส่งข้อความ อ่านแชท</div>
+        <div style="font-size:11px;color:#64748b;line-height:1.6">ส่งข้อความหาทีม · ค้นหาข้อความเก่า · โพสต์รายงานอัตโนมัติ · แจ้งเตือนทีม</div>
       </div>
-      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center">
+      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px">
         <div style="font-size:24px;margin-bottom:8px">📝</div>
         <div style="font-weight:700;font-size:13px;margin-bottom:4px">Notion</div>
-        <div style="font-size:11px;color:#64748b">สร้างและอ่าน Pages</div>
+        <div style="font-size:11px;color:#64748b;line-height:1.6">อ่าน Pages · สร้างเนื้อหาใหม่ · อัปเดต Database · สรุปเอกสาร</div>
       </div>
-      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center">
+      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px">
         <div style="font-size:24px;margin-bottom:8px">🎨</div>
         <div style="font-weight:700;font-size:13px;margin-bottom:4px">Canva</div>
-        <div style="font-size:11px;color:#64748b">สร้าง Design อัตโนมัติ</div>
+        <div style="font-size:11px;color:#64748b;line-height:1.6">สร้าง Design อัตโนมัติ · แก้ไข Template · Export ไฟล์</div>
       </div>
-      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center">
-        <div style="font-size:24px;margin-bottom:8px">📈</div>
-        <div style="font-weight:700;font-size:13px;margin-bottom:4px">Google Drive</div>
-        <div style="font-size:11px;color:#64748b">อ่าน/บันทึกไฟล์ Drive</div>
+      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px">
+        <div style="font-size:24px;margin-bottom:8px">📁</div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px">Google Drive / SharePoint</div>
+        <div style="font-size:11px;color:#64748b;line-height:1.6">อ่านไฟล์ Drive · บันทึกไฟล์ขึ้น Cloud · ค้นหาเอกสาร</div>
       </div>
-      <div style="background:#f8f9ff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center">
+      <div style="background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:12px;padding:16px">
         <div style="font-size:24px;margin-bottom:8px">🤖</div>
-        <div style="font-weight:700;font-size:13px;margin-bottom:4px">100+ Plugins</div>
-        <div style="font-size:11px;color:#64748b">และอีกมากมาย</div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px">100+ Connectors</div>
+        <div style="font-size:11px;color:#64748b;line-height:1.6">GitHub, Jira, HubSpot, Asana, Linear, Outlook, Gmail และอีกมาก</div>
       </div>
     </div>
 
-    <h3 style="font-size:16px;font-weight:700;margin-bottom:12px">📅 Scheduled Tasks — งานอัตโนมัติ</h3>
-    <div class="info-box success-box">
-      <span class="info-icon">⏰</span>
-      <div class="info-text">Cowork สามารถตั้งเวลาทำงานอัตโนมัติได้ เช่น "ทุกเช้า 8:00 น. สรุปงานที่ค้างอยู่จาก ClickUp และส่งไปยัง Slack"</div>
+    <h4 style="font-size:14px;font-weight:700;margin-bottom:10px">วิธีติดตั้ง Connector (3 ขั้นตอน)</h4>
+    <div class="setup-steps" style="margin-bottom:24px">
+      <div class="step">
+        <div class="step-num orange" style="font-size:13px;width:26px;height:26px;line-height:26px">1</div>
+        <div class="step-body">
+          <div class="step-title" style="font-size:13px">เปิด Settings ⚙️ → Plugins → Browse</div>
+          <div class="step-desc" style="font-size:12px">ค้นหา Plugin ที่ต้องการ เช่น "Slack", "ClickUp", "Notion"</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num orange" style="font-size:13px;width:26px;height:26px;line-height:26px">2</div>
+        <div class="step-body">
+          <div class="step-title" style="font-size:13px">กด Install → Connect Account</div>
+          <div class="step-desc" style="font-size:12px">Login ผ่าน OAuth (เหมือน "Login with Google") — ปลอดภัย ไม่เก็บ Password</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num orange" style="font-size:13px;width:26px;height:26px;line-height:26px">3</div>
+        <div class="step-body">
+          <div class="step-title" style="font-size:13px">สั่งงานได้ทันที</div>
+          <div class="step-desc" style="font-size:12px">พิมพ์ "ดู Tasks ที่ค้างอยู่ใน ClickUp ของฉัน" — Claude จะดึงข้อมูลมาให้อัตโนมัติ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scheduled Tasks -->
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:#D97757">📅 Scheduled Tasks — งานอัตโนมัติตามเวลา</h3>
+    <div style="font-size:13px;color:#64748b;margin-bottom:14px;line-height:1.7">ตั้งให้ Claude ทำงานซ้ำๆ อัตโนมัติโดยไม่ต้องสั่งเอง — เหมือนมีผู้ช่วยที่ทำงานแม้ตอนที่คุณไม่ได้อยู่</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:700;color:#059669;margin-bottom:8px">⏰ ตัวอย่าง Daily Tasks</div>
+        <div style="font-size:12px;color:#1a1a2e;line-height:1.9">
+          🌅 <em>ทุกเช้า 8:00</em> — สรุปงานค้างจาก ClickUp + ส่ง Slack<br>
+          📊 <em>ทุกวันศุกร์ 17:00</em> — สร้างรายงานยอดขายสัปดาห์<br>
+          📬 <em>ทุกวัน 9:00</em> — สรุป Email ที่ยังไม่ได้อ่าน
+        </div>
+      </div>
+      <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:700;color:#D97757;margin-bottom:8px">📋 วิธีสร้าง Scheduled Task</div>
+        <div style="font-size:12px;color:#1a1a2e;line-height:1.9">
+          1. พิมพ์งานที่ต้องการ<br>
+          2. เพิ่ม "ทุกวัน / ทุกสัปดาห์ / ทุกเช้า"<br>
+          3. Claude จะถามยืนยันตาราง<br>
+          4. กด Confirm — ระบบจะรันอัตโนมัติ
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box tip-box">
+      <span class="info-icon">💡</span>
+      <div class="info-text"><strong>ตัวอย่างสั่ง Scheduled Task:</strong> <em>"ทุกเช้าวันจันทร์เวลา 9:00 น. ดึง Tasks จาก ClickUp ที่ deadline สัปดาห์นี้ สรุปเป็นรายงาน และส่งไปที่ Slack channel #weekly-report"</em></div>
     </div>
   </div>
 
-  <!-- Advanced -->
+  <!-- ═══════════════ ADVANCED ═══════════════ -->
   <div class="level-content" id="cowork-adv">
-    <div class="tips-grid">
-      <div class="tip-card">
-        <div class="tip-icon tip-bg-3">🎯</div>
-        <div class="tip-body">
-          <div class="tip-title">สร้าง Skills</div>
-          <div class="tip-desc">สร้าง Custom Skill สำหรับองค์กร บันทึก workflow ซับซ้อนไว้ใช้ซ้ำ เพื่อนร่วมทีมก็ใช้ได้</div>
+
+    <!-- Memory System -->
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:#D97757">🧠 Memory System — ให้ Claude จำทุกอย่างข้ามเซสชัน</h3>
+    <div style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.7">Cowork ใช้ระบบ File-based Memory — Claude อ่านไฟล์ CLAUDE.md และ memory/ folder อัตโนมัติทุกครั้งที่เริ่ม session ใหม่</div>
+
+    <div style="background:#1a1a2e;border-radius:12px;padding:20px;margin-bottom:20px">
+      <div style="color:#06B6D4;font-size:11px;font-weight:700;margin-bottom:12px">📁 โครงสร้าง Memory ที่แนะนำ</div>
+      <div style="font-family:monospace;font-size:12px;color:#e2e8f0;line-height:2">
+        <span style="color:#F59E0B">📂 Project Folder/</span><br>
+        &nbsp;&nbsp;<span style="color:#06B6D4">📄 CLAUDE.md</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#64748b"># ข้อมูลหลัก — อ่านทุก session</span><br>
+        &nbsp;&nbsp;<span style="color:#F59E0B">📂 memory/</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a3e635">📄 team.md</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#64748b"># ข้อมูลทีม, ชื่อ, role</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a3e635">📄 brand.md</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#64748b"># Brand guidelines, tone of voice</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a3e635">📄 workflows.md</span> &nbsp;<span style="color:#64748b"># ขั้นตอน workflows ที่ใช้บ่อย</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a3e635">📄 contacts.md</span> &nbsp;<span style="color:#64748b"># รายชื่อ Supplier, ลูกค้าสำคัญ</span><br>
+        &nbsp;&nbsp;<span style="color:#F59E0B">📂 outputs/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#64748b"># ไฟล์ที่ Claude สร้าง</span>
+      </div>
+    </div>
+
+    <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:16px;margin-bottom:24px">
+      <div style="font-size:11px;font-weight:700;color:#D97757;margin-bottom:10px">📝 ตัวอย่าง CLAUDE.md สำหรับทีม BFF</div>
+      <div style="background:#1a1a2e;border-radius:8px;padding:14px;font-family:monospace;font-size:12px;color:#e2e8f0;line-height:1.9">
+        <span style="color:#F59E0B"># Memory — BFF Bangkok Team</span><br><br>
+        <span style="color:#06B6D4">## ทีม</span><br>
+        ชื่อ: [ชื่อคุณ] · Role: Marketing Manager<br>
+        บริษัท: BFF Bangkok · ขายแบรนด์: 111SKIN, Oribe, Cellcosmet<br><br>
+        <span style="color:#06B6D4">## Preferences</span><br>
+        - ภาษา: ไทยเป็นหลัก, คำศัพท์ Beauty ใช้ภาษาอังกฤษ<br>
+        - รายงานทุกอย่างเป็น Table + สรุปสั้นๆ<br>
+        - Caption IG ต้องมี Emoji และ Hashtag เสมอ
+      </div>
+    </div>
+
+    <!-- Multi-Agent Workflow -->
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:#D97757">🔄 Multi-Agent Workflow — ทำงานหลายอย่างพร้อมกัน</h3>
+    <div style="font-size:13px;color:#64748b;margin-bottom:16px;line-height:1.7">Cowork สามารถ spawn sub-agents ทำงานพร้อมกันหลาย task โดยอัตโนมัติ — เหมือนมีทีมผู้ช่วย AI หลายคนทำงานพร้อมกัน</div>
+
+    <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px;padding:20px;margin-bottom:20px">
+      <div style="color:#F59E0B;font-size:12px;font-weight:700;margin-bottom:14px">🎯 ตัวอย่าง: Launch Campaign ใหม่</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div style="background:rgba(217,119,87,0.15);border:1px solid rgba(217,119,87,0.3);border-radius:8px;padding:12px;text-align:center">
+          <div style="color:#D97757;font-size:20px;margin-bottom:6px">🔍</div>
+          <div style="color:#fff;font-size:11px;font-weight:700;margin-bottom:4px">Agent 1</div>
+          <div style="color:#94a3b8;font-size:11px">Research คู่แข่ง + trend ตลาด</div>
+        </div>
+        <div style="background:rgba(6,182,212,0.15);border:1px solid rgba(6,182,212,0.3);border-radius:8px;padding:12px;text-align:center">
+          <div style="color:#06B6D4;font-size:20px;margin-bottom:6px">✍️</div>
+          <div style="color:#fff;font-size:11px;font-weight:700;margin-bottom:4px">Agent 2</div>
+          <div style="color:#94a3b8;font-size:11px">เขียน Copy + Caption ทุก Platform</div>
+        </div>
+        <div style="background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:8px;padding:12px;text-align:center">
+          <div style="color:#7C3AED;font-size:20px;margin-bottom:6px">📊</div>
+          <div style="color:#fff;font-size:11px;font-weight:700;margin-bottom:4px">Agent 3</div>
+          <div style="color:#94a3b8;font-size:11px">สร้าง Deck + Budget Sheet</div>
         </div>
       </div>
-      <div class="tip-card">
-        <div class="tip-icon tip-bg-3">🔄</div>
-        <div class="tip-body">
-          <div class="tip-title">Multi-Agent Workflow</div>
-          <div class="tip-desc">Cowork สามารถ spawn sub-agents เพื่อทำงานพร้อมกันหลายอย่าง เช่น research + เขียน + สร้าง design พร้อมกัน</div>
+      <div style="color:#64748b;font-size:11px;text-align:center;margin-top:12px">ทั้ง 3 Agent ทำงานพร้อมกัน → รวมผลลัพธ์ให้โดยอัตโนมัติ</div>
+    </div>
+
+    <!-- Custom Skills -->
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:#D97757">🎯 Custom Skills — สร้าง Skill ของทีมเอง</h3>
+    <div style="font-size:13px;color:#64748b;margin-bottom:14px;line-height:1.7">Skills คือ "ชุดคำสั่ง + ขั้นตอน" ที่บันทึกไว้ให้ใช้ซ้ำได้ — เหมาะสำหรับงานที่ทีมต้องทำบ่อยๆ ตามรูปแบบเดิม</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
+      <div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:10px;color:#1a1a2e">Skills ที่เหมาะสร้างสำหรับ BFF:</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px"><span>💄</span> <strong>NPD Launch Skill</strong> — สร้าง Brief + Caption + Deck ทุกครั้งที่ launch สินค้าใหม่</div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px"><span>📊</span> <strong>Sales Report Skill</strong> — สร้างรายงานยอดขายรายวัน/สัปดาห์ format เดิมทุกครั้ง</div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px"><span>📱</span> <strong>Social Content Skill</strong> — เขียน Caption IG/TikTok/FB ตาม Brand Voice BFF</div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px"><span>💌</span> <strong>Email Campaign Skill</strong> — สร้าง Email marketing ตาม template ที่กำหนด</div>
         </div>
       </div>
-      <div class="tip-card">
-        <div class="tip-icon tip-bg-3">🧠</div>
-        <div class="tip-body">
-          <div class="tip-title">Memory System</div>
-          <div class="tip-desc">ใช้ CLAUDE.md และ memory/ folder เพื่อให้ Claude จำข้อมูลองค์กร ข้อมูลทีม และ workflows ข้ามเซสชัน</div>
+      <div style="background:#1a1a2e;border-radius:12px;padding:16px">
+        <div style="color:#06B6D4;font-size:11px;font-weight:700;margin-bottom:10px">📁 โครงสร้าง Custom Skill</div>
+        <div style="font-family:monospace;font-size:11px;color:#e2e8f0;line-height:2">
+          <span style="color:#F59E0B">skills/</span><br>
+          └── <span style="color:#a3e635">npd-launch/</span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:#06B6D4">SKILL.md</span><br><br>
+          <span style="color:#64748b"># ใน SKILL.md บอก Claude:</span><br>
+          <span style="color:#e2e8f0">- ขั้นตอนการทำงาน</span><br>
+          <span style="color:#e2e8f0">- Output ที่ต้องการ</span><br>
+          <span style="color:#e2e8f0">- Format และ Template</span><br>
+          <span style="color:#e2e8f0">- ตัวอย่างที่ดี/ไม่ดี</span>
         </div>
       </div>
-      <div class="tip-card">
-        <div class="tip-icon tip-bg-3">📊</div>
-        <div class="tip-body">
-          <div class="tip-title">Live Artifacts</div>
-          <div class="tip-desc">สร้าง Dashboard แบบ interactive ที่ดึงข้อมูล real-time จาก connected tools ดูได้ตลอดไม่ต้อง refresh</div>
-        </div>
+    </div>
+
+    <!-- Live Artifacts -->
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:#D97757">📊 Live Artifacts — Dashboard ที่อัปเดตอัตโนมัติ</h3>
+    <div style="font-size:13px;color:#64748b;margin-bottom:14px;line-height:1.7">Artifacts คือ HTML page ที่ Claude สร้างและ host ไว้ — เปิดมาทีไรก็ดึงข้อมูล real-time จาก connected tools ให้ทันที ไม่ต้องขอ Claude ซ้ำ</div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+      <div style="background:linear-gradient(135deg,#eff6ff,#fff);border:1px solid #bfdbfe;border-radius:12px;padding:16px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">📈</div>
+        <div style="font-weight:700;font-size:12px;margin-bottom:4px">Sales Dashboard</div>
+        <div style="font-size:11px;color:#64748b">ยอดขายรายวัน, Top SKU, Platform breakdown — เปิดมาแล้วเห็นทันที</div>
       </div>
+      <div style="background:linear-gradient(135deg,#f0fdf4,#fff);border:1px solid #bbf7d0;border-radius:12px;padding:16px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">✅</div>
+        <div style="font-weight:700;font-size:12px;margin-bottom:4px">Task Tracker</div>
+        <div style="font-size:11px;color:#64748b">Tasks ที่ค้างจาก ClickUp — กรอง, เรียง, ดู status ได้เลย</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#faf5ff,#fff);border:1px solid #e9d5ff;border-radius:12px;padding:16px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">📅</div>
+        <div style="font-weight:700;font-size:12px;margin-bottom:4px">Campaign Planner</div>
+        <div style="font-size:11px;color:#64748b">Timeline แคมเปญ, Deadline, Status ของทุกโปรเจกต์</div>
+      </div>
+    </div>
+
+    <div class="info-box success-box">
+      <span class="info-icon">🚀</span>
+      <div class="info-text"><strong>วิธีสร้าง Live Artifact:</strong> สั่ง Claude ว่า <em>"สร้าง Dashboard หน้าเดียวที่ดึงข้อมูลยอดขายจาก ClickUp แสดง Top 5 สินค้าและ Platform ที่ขายดีที่สุด อัปเดตทุกครั้งที่เปิด"</em> — Claude จะสร้างและบันทึกไว้ให้เปิดซ้ำได้เสมอ</div>
     </div>
   </div>
 </section>
