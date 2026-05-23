@@ -765,6 +765,7 @@ html { scroll-behavior: smooth; }
   <a class="nav-item" href="#importexport" onclick="goToSection('importexport',this);return false;"><span class="nav-icon">📦</span> Import / Export Project</a>
   <a class="nav-item" href="#migration" onclick="goToSection('migration',this);return false;"><span class="nav-icon">🔄</span> ย้ายข้อมูล Profile</a>
   <a class="nav-item" href="#summary" onclick="goToSection('summary',this);return false;"><span class="nav-icon">📋</span> สรุปด่วน</a>
+  <a class="nav-item" href="#usecases" onclick="goToSection('usecases',this);return false;"><span class="nav-icon">🧪</span> Use Cases ทดลองทำ</a>
   <a class="nav-item" href="#glossary" onclick="goToSection('glossary',this);return false;"><span class="nav-icon">📖</span> Glossary คำศัพท์</a>
   <a class="nav-item" href="#faq" onclick="goToSection('faq',this);return false;"><span class="nav-icon">❓</span> FAQ & แก้ปัญหา</a>
 </nav>
@@ -2789,6 +2790,386 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
+<!-- USE CASES -->
+<section class="section" id="usecases">
+  <div class="section-header">
+    <div class="section-badge badge-purple">🧪 Use Cases</div>
+    <h2 class="section-title">Use Cases — ทดลองทำได้เลย<br><small style="font-size:18px;font-weight:400;color:#64748b">Copy Prompt → Paste → ดูผล</small></h2>
+    <p class="section-sub">แต่ละ Use Case มี Scenario จริง + Prompt พร้อม copy + ผลลัพธ์ที่คาดหวัง — ทดลองได้ทันทีใน Claude Chat หรือ Claude Cowork</p>
+  </div>
+
+  <!-- Level tabs for use cases -->
+  <div class="level-tabs" style="margin-bottom:32px">
+    <button class="level-tab active" onclick="switchLevel('uc','data',this)">📊 Data & Report</button>
+    <button class="level-tab" onclick="switchLevel('uc','meeting',this)">🤝 ทีมงาน & ประชุม</button>
+  </div>
+
+  <!-- ── DATA & REPORT ─────────────────────────────── -->
+  <div class="level-content active" id="uc-data">
+
+    <!-- UC1 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-01</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">สรุปยอดขายรายสัปดาห์จากตาราง Excel</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Beginner • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~2 นาที</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">คุณมีข้อมูลยอดขายรายสัปดาห์ในหัวข้อ SKU, ยอดขาย, target ต้องการให้ Claude สรุปให้รวดเร็ว ไม่ต้องทำ pivot table เอง</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • สรุป 5 SKU ยอดขายสูงสุด<br>
+              • SKU ที่ต่ำกว่า target<br>
+              • % achievement รวม<br>
+              • Recommendation 3 ข้อ
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b;position:relative">
+              <button onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('📋 Copy','').trim())" style="position:absolute;top:8px;right:8px;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:sans-serif">📋 Copy</button>
+ฉันมีข้อมูลยอดขายสัปดาห์นี้ [วางตาราง Excel ที่นี่]<br><br>
+ช่วยวิเคราะห์และสรุปดังนี้:<br>
+1. 5 SKU ยอดขายสูงสุด พร้อม % ของ target<br>
+2. SKU ที่ยอดต่ำกว่า target เกิน 20%<br>
+3. ยอดรวมทั้งหมด vs target รวม<br>
+4. Recommendation 3 ข้อสำหรับสัปดาห์หน้า<br><br>
+ตอบเป็นภาษาไทย จัดรูปแบบให้อ่านง่าย
+            </div>
+            <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#166534">
+              💡 <strong>Tip:</strong> Copy ตาราง Excel แล้ว paste ตรงๆ ใน Chat ได้เลย — Claude อ่านได้ทันที
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UC2 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#047857,#10b981);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-02</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">เปรียบเทียบ SKU 2 Brand — หา Best Seller & Dead Stock</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~5 นาที</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">มีข้อมูลยอดขาย 111SKIN vs Cellcosmet ต้องการรู้ว่า SKU ไหน Best Seller, ไหน Dead Stock เพื่อวางแผน reorder และ markdown</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • ตาราง Best Seller Top 5 ของแต่ละ brand<br>
+              • Dead Stock (ขายน้อยกว่า X ชิ้น/เดือน)<br>
+              • แนะนำ Bundle / Cross-sell<br>
+              • Action Plan สั้นๆ
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b;position:relative">
+              <button onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('📋 Copy','').trim())" style="position:absolute;top:8px;right:8px;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:sans-serif">📋 Copy</button>
+นี่คือข้อมูลยอดขาย 2 brand เดือนที่ผ่านมา:<br>
+[วางข้อมูล 111SKIN]<br>
+[วางข้อมูล Cellcosmet]<br><br>
+ช่วยวิเคราะห์:<br>
+1. Top 5 Best Seller ของแต่ละ brand<br>
+2. SKU ที่ขายได้น้อยกว่า 5 ชิ้น/เดือน (Dead Stock)<br>
+3. แนะนำ Bundle 3 ชุดที่ควรจับคู่ระหว่าง 2 brand<br>
+4. Action สั้นๆ: reorder อะไร, markdown อะไร<br><br>
+ตอบเป็นภาษาไทย ทำตารางให้ด้วย
+            </div>
+            <div style="background:#fef3c7;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#92400e">
+              💡 <strong>Pro Tip:</strong> อัปโหลดไฟล์ Excel ตรงๆ แล้ว Claude จะอ่านได้โดยไม่ต้อง paste ข้อมูล
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UC3 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#7e22ce,#a855f7);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-03</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">สร้างรายงาน Monthly Performance อัตโนมัติ (Cowork)</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Advanced • ใช้ได้ใน: Claude Cowork • เวลา: ~10 นาที (ทำครั้งแรก)</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">ต้องทำ Monthly Report ทุกเดือน ใช้เวลา 2–3 ชั่วโมง ด้วย Claude Cowork สามารถสั่งให้รันอัตโนมัติทุกสิ้นเดือน ส่งรายงานสำเร็จรูปเป็น Excel + PowerPoint</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • ไฟล์ Excel: ตารางยอดขายครบทุก brand<br>
+              • ไฟล์ PowerPoint: สไลด์สรุป 10 หน้า<br>
+              • บันทึกใน Google Drive อัตโนมัติ<br>
+              • ทำซ้ำทุกสิ้นเดือนโดยไม่ต้องสั่ง
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt สำหรับ Cowork</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b;position:relative">
+              <button onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('📋 Copy','').trim())" style="position:absolute;top:8px;right:8px;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:sans-serif">📋 Copy</button>
+ทุกสิ้นเดือน ให้ทำดังนี้:<br>
+1. อ่านไฟล์ยอดขาย "Sales_[เดือน].xlsx"<br>
+   จาก Google Drive โฟลเดอร์ "Monthly Data"<br>
+2. สร้าง Excel สรุปยอดขายแยก brand<br>
+   พร้อม chart และ YoY comparison<br>
+3. สร้าง PowerPoint 10 สไลด์:<br>
+   - Cover, Executive Summary, Top SKU,<br>
+   - Brand Performance, Trend, Next Month Plan<br>
+4. บันทึกทั้งสองไฟล์ใน Drive<br>
+   โฟลเดอร์ "Monthly Reports/[ปี]/[เดือน]"<br><br>
+ตั้ง schedule: ทุกวันที่ 1 ของเดือน เวลา 8:00 น.
+            </div>
+            <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#1e40af">
+              🔌 <strong>ต้องการ:</strong> Google Drive Connector เชื่อมต่อก่อน + xlsx Skill
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UC4 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#b45309,#f59e0b);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-04</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">วิเคราะห์ Feedback ลูกค้าจาก Review / Comment</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~5 นาที</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">มี review จาก Shopee / IG comment / Google Review หลายสิบ-ร้อยรายการ ต้องการรู้ว่า ลูกค้าชมเรื่องอะไร และร้องเรียนเรื่องอะไรมากที่สุด</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • Positive themes Top 5<br>
+              • Negative themes Top 5<br>
+              • คะแนน Sentiment โดยรวม<br>
+              • แนะนำ action ที่ควรทำ
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b;position:relative">
+              <button onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('📋 Copy','').trim())" style="position:absolute;top:8px;right:8px;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:sans-serif">📋 Copy</button>
+นี่คือ customer review ของ [ชื่อ product]<br>
+จาก Shopee / Instagram ช่วง [ระบุเดือน]:<br><br>
+[วาง review ทั้งหมดที่นี่]<br><br>
+ช่วยวิเคราะห์:<br>
+1. Positive themes ที่พูดถึงมากที่สุด (Top 5)<br>
+2. Negative themes / complaints (Top 5)<br>
+3. Sentiment score โดยรวม (0-10)<br>
+4. Quote ตัวอย่างที่น่าสนใจ 3 รายการ<br>
+5. แนะนำ action ที่ทีมควรทำจาก feedback นี้<br><br>
+ตอบเป็นภาษาไทย จัดหัวข้อให้ชัดเจน
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /uc-data -->
+
+  <!-- ── ทีมงาน & ประชุม ───────────────────────────── -->
+  <div class="level-content" id="uc-meeting">
+
+    <!-- UC5 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#0f766e,#14b8a6);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-05</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">สรุปประชุมจากบันทึกย่อ → Action Items ทันที</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Beginner • ใช้ได้ใน: Claude Chat • เวลา: ~2 นาที</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">ประชุมเสร็จแล้ว มีบันทึกย่อแบบ bullet points ระเกะระกะ ต้องการให้ Claude จัดเป็น Action Items ที่ชัดเจน พร้อม Owner และ Deadline</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • สรุปประชุม 5–7 บรรทัด<br>
+              • Action Items พร้อม Owner<br>
+              • Deadline ชัดเจน<br>
+              • Decision ที่ตกลงกันไว้
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b;position:relative">
+              <button onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('📋 Copy','').trim())" style="position:absolute;top:8px;right:8px;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:sans-serif">📋 Copy</button>
+นี่คือบันทึกการประชุม [ชื่อประชุม] วันที่ [วัน]:<br>
+ผู้เข้าร่วม: [ชื่อ], [ชื่อ], [ชื่อ]<br><br>
+[วางบันทึกย่อที่นี่]<br><br>
+ช่วยจัดทำ:<br>
+1. สรุปประชุม 5–7 บรรทัด<br>
+2. Action Items ทุกข้อ รูปแบบ:<br>
+   ☐ [งาน] — Owner: [ชื่อ] — Due: [วันที่]<br>
+3. Decisions ที่ตกลงแล้ว (bullet)<br>
+4. Follow-up ที่ยังต้องหารือ<br><br>
+ตอบเป็นภาษาไทย พร้อม copy ไปส่ง Line ได้เลย
+            </div>
+            <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#166534">
+              💡 <strong>Tip:</strong> บันทึกด้วยเสียงแล้ว transcribe? ก็ paste ตรงๆ ได้เลย — Claude แยก noise ออกเองได้
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UC6 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#be185d,#ec4899);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-06</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">เขียน Influencer Brief ให้ครบใน 3 นาที</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~3 นาที</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">จะส่ง product ให้ influencer review ต้องเขียน brief ที่ชัดเจน บอก key message, dos &amp; don'ts, และ deliverables — แต่ใช้เวลาเขียนนานมาก</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • Brand Background สั้นๆ<br>
+              • Product Key Messages 3 ข้อ<br>
+              • Dos &amp; Don'ts สำหรับ content<br>
+              • Deliverables ที่ต้องส่ง<br>
+              • Hashtag ที่ใช้
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b;position:relative">
+              <button onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('📋 Copy','').trim())" style="position:absolute;top:8px;right:8px;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:sans-serif">📋 Copy</button>
+ช่วยเขียน Influencer Brief สำหรับ:<br>
+- Brand: [ชื่อ brand เช่น 111SKIN / Oribe]<br>
+- Product: [ชื่อ product + ราคา]<br>
+- Platform: [IG Reel / TikTok / YouTube]<br>
+- Influencer type: [Nano/Micro/Macro]<br>
+- Key message ที่ต้องการสื่อ: [ระบุ]<br>
+- สิ่งที่ห้ามพูด: [เช่น ห้ามเปรียบกับ competitor]<br><br>
+Brief ควรมี: Background, Key Messages,<br>
+Dos &amp; Don'ts, Deliverables, Timeline, Hashtags<br><br>
+ตอบเป็นภาษาไทย พร้อม copy ส่ง influencer ได้เลย
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UC7 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#1d4ed8,#6366f1);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-07</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">สร้าง Presentation Outline จาก Concept เดียว</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~5 นาที</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">ต้องนำเสนองาน / proposal ให้ผู้บริหาร แต่ยังไม่รู้จะเรียง slide อย่างไร — บอก Claude แค่ concept และ objective แล้วได้ outline ทันที</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • Slide outline 10–15 สไลด์<br>
+              • หัวข้อ + bullet points แต่ละสไลด์<br>
+              • ลำดับที่ persuasive<br>
+              • ใช้ใน Cowork สั่งสร้าง PPTX ได้เลย
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b;position:relative">
+              <button onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('📋 Copy','').trim())" style="position:absolute;top:8px;right:8px;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:sans-serif">📋 Copy</button>
+ช่วยสร้าง Presentation Outline สำหรับ:<br>
+- หัวข้อ: [เช่น "แผนการตลาด 111SKIN Q3 2026"]<br>
+- นำเสนอให้: [เช่น ผู้บริหาร BFF / ทีม brand]<br>
+- เวลานำเสนอ: [เช่น 15 นาที]<br>
+- Objective: [เช่น ขอ budget เพิ่ม / อนุมัติ campaign]<br>
+- ข้อมูลสำคัญที่ต้องใส่: [ระบุ]<br><br>
+ทำ outline แบบ slide-by-slide:<br>
+Slide 1: ชื่อสไลด์ — bullet 1, bullet 2, bullet 3<br>
+ลำดับให้ persuasive เหมาะกับ executive audience<br><br>
+ตอบเป็นภาษาไทย
+            </div>
+            <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#1e40af">
+              🚀 <strong>ต่อยอด (Cowork):</strong> หลังได้ outline แล้ว พิมพ์ต่อ "สร้างไฟล์ PowerPoint จาก outline นี้" — ได้ .pptx ทันที
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UC8 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#065f46,#059669);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-08</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">เขียน Email ถึง Agency / Vendor แบบ Professional</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Beginner • ใช้ได้ใน: Claude Chat • เวลา: ~2 นาที</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">ต้องส่ง email ติดตามงาน, ขอ quotation, หรือแจ้งเปลี่ยน requirement — แต่ไม่แน่ใจว่าควรเขียนยังไงให้ professional และตรงประเด็น</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • Subject line ที่ชัดเจน<br>
+              • Body email professional<br>
+              • Tone ตามความสัมพันธ์<br>
+              • ส่งได้เลย ไม่ต้องแก้มาก
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b;position:relative">
+              <button onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('📋 Copy','').trim())" style="position:absolute;top:8px;right:8px;background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:sans-serif">📋 Copy</button>
+ช่วยเขียน email สำหรับ:<br>
+- ส่งถึง: [agency/vendor/ชื่อคน]<br>
+- ความสัมพันธ์: [เป็นทางการ / กึ่งทางการ]<br>
+- วัตถุประสงค์: [เช่น ติดตาม artwork,<br>
+  ขอ quotation สำหรับ event Q3,<br>
+  แจ้งเปลี่ยน spec งาน]<br>
+- รายละเอียดสำคัญ: [ระบุ]<br>
+- Deadline ที่ต้องการ: [ถ้ามี]<br><br>
+เขียนทั้ง Subject และ Body<br>
+ภาษาไทย professional แต่ไม่แข็งเกินไป<br>
+ความยาวพอดี ไม่ยาวเกิน
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /uc-meeting -->
+
+  <div class="info-box tip-box" style="margin-top:8px">
+    <span class="info-icon">🚀</span>
+    <div class="info-text"><strong>ต่อยอด Use Case ด้วย Cowork:</strong> Use Case ไหนที่ทำซ้ำทุกสัปดาห์ — ตั้ง Scheduled Task ให้ Cowork รันอัตโนมัติ ไม่ต้องสั่งทุกครั้ง ประหยัดเวลาได้หลายชั่วโมงต่อเดือน</div>
+  </div>
+</section>
+
 <!-- GLOSSARY -->
 <section class="section section-alt" id="glossary">
   <div class="section-header">
@@ -3103,6 +3484,7 @@ const sectionMap = {
   'importexport': '#importexport',
   'migration': '#migration',
   'summary': '#summary',
+  'usecases': '#usecases',
   'glossary': '#glossary',
   'faq': '#faq'
 };
