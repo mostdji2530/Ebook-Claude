@@ -765,6 +765,8 @@ html { scroll-behavior: smooth; }
   <a class="nav-item" href="#importexport" onclick="goToSection('importexport',this);return false;"><span class="nav-icon">📦</span> Import / Export Project</a>
   <a class="nav-item" href="#migration" onclick="goToSection('migration',this);return false;"><span class="nav-icon">🔄</span> ย้ายข้อมูล Profile</a>
   <a class="nav-item" href="#summary" onclick="goToSection('summary',this);return false;"><span class="nav-icon">📋</span> สรุปด่วน</a>
+  <a class="nav-item" href="#glossary" onclick="goToSection('glossary',this);return false;"><span class="nav-icon">📖</span> Glossary คำศัพท์</a>
+  <a class="nav-item" href="#faq" onclick="goToSection('faq',this);return false;"><span class="nav-icon">❓</span> FAQ & แก้ปัญหา</a>
 </nav>
 
 <!-- MAIN -->
@@ -1006,13 +1008,13 @@ html { scroll-behavior: smooth; }
         <div class="step-num purple">2</div>
         <div class="step-body">
           <div class="step-title">ตั้ง System Prompt ใน Project</div>
-          <div class="step-desc">ใส่คำสั่งถาวรสำหรับโปรเจกต์ เช่น "คุณเป็น Senior DevOps Engineer ที่เชี่ยวชาญ AWS และ Kubernetes ตอบเป็นภาษาไทยเสมอ"</div>
+          <div class="step-desc">ใส่คำสั่งถาวรสำหรับโปรเจกต์ เช่น "คุณเป็น Senior Marketing Strategist ที่เชี่ยวชาญ luxury beauty retail ตอบเป็นภาษาไทยเสมอ"</div>
           <div class="tip-code">
-            <span class="cmt"># ตัวอย่าง System Prompt สำหรับ Project (IT)</span><br>
-            คุณเป็น Senior Software Engineer ที่เชี่ยวชาญ Python, FastAPI, PostgreSQL<br>
-            - ตอบเป็นภาษาไทยเสมอ พร้อม code ตัวอย่าง<br>
-            - เน้น clean code, SOLID principles<br>
-            - บอก trade-off และ best practice ทุกครั้ง
+            <span class="cmt"># ตัวอย่าง System Prompt สำหรับ Project (BFF Bangkok)</span><br>
+            คุณเป็น Senior Brand & Marketing Strategist ที่เชี่ยวชาญ luxury beauty retail<br>
+            - ตอบเป็นภาษาไทยเสมอ ยกเว้นชื่อ brand และ technical terms<br>
+            - เน้น brand voice, audience insight และ actionable recommendation<br>
+            - ระบุ channel ที่เหมาะสม (IG, TikTok, Shopee, Email) ทุกครั้ง
           </div>
         </div>
       </div>
@@ -1798,12 +1800,10 @@ html { scroll-behavior: smooth; }
       <div class="tip-icon tip-bg-1">🎯</div>
       <div class="tip-body">
         <div class="tip-title">1. ให้ Context ที่ชัดเจน</div>
-        <div class="tip-desc">บอก Background ว่าคุณเป็นใคร ทำอะไร เพื่ออะไร — ยิ่งชัด ยิ่งตอบตรง</div>
+        <div class="tip-desc">บอกว่าคุณเป็นใคร ทำอะไร เพื่ออะไร — ยิ่งชัด Claude ตอบตรงมากขึ้น</div>
         <div class="tip-code">
-          ❌ "แก้ bug หน่อย"<br>
-          ✅ "ฉันเป็น Backend Dev ใช้ FastAPI + PostgreSQL<br>
-          function นี้ throw KeyError เมื่อ user_id ไม่มีใน dict<br>
-          ต้องการ fix ให้ handle gracefully พร้อม log error"
+          ❌ "เขียน caption หน่อย"<br>
+          ✅ "ฉันเป็น Marketing BFF Bangkok ทำ IG Post โปรโมท 111SKIN Rose Gold Brightening Serum ราคา ฿4,500 กลุ่มเป้าหมายผู้หญิง 25-40 ปี ต้องการ caption กระชับ น่าสนใจ พร้อม 5 hashtag"
         </div>
       </div>
     </div>
@@ -1811,60 +1811,131 @@ html { scroll-behavior: smooth; }
       <div class="tip-icon tip-bg-2">📐</div>
       <div class="tip-body">
         <div class="tip-title">2. ระบุ Format ผลลัพธ์</div>
-        <div class="tip-desc">บอกว่าต้องการผลลัพธ์ในรูปแบบอะไร เพื่อนำไปใช้ต่อได้ทันที</div>
+        <div class="tip-desc">บอกว่าต้องการผลลัพธ์แบบไหน เพื่อนำไปใช้ต่อได้ทันที</div>
         <div class="tip-code">
-          "ตอบในรูปแบบตาราง Markdown<br>
-          3 ตัวเลือก architecture แต่ละตัวมี:<br>
-          ชื่อ, Pros, Cons, เมื่อไหรควรใช้"
+          "ตอบในรูปแบบตาราง 3 ตัวเลือก caption<br>
+          แต่ละตัวมี: Hook, Body (2 ประโยค), CTA, Hashtags<br>
+          Tone: เป็นมิตร, ไม่ formal เกินไป"
         </div>
       </div>
     </div>
     <div class="tip-card">
       <div class="tip-icon tip-bg-3">🔄</div>
       <div class="tip-body">
-        <div class="tip-title">3. ใช้ Iteration</div>
-        <div class="tip-desc">อย่ากลัวที่จะ refine — พิมพ์ follow-up เพื่อ improve code หรือ solution ได้ต่อเนื่อง</div>
+        <div class="tip-title">3. ใช้ Iteration ปรับผลลัพธ์</div>
+        <div class="tip-desc">ไม่ต้องพอใจผลแรก — refine ต่อจนได้สิ่งที่ต้องการ</div>
         <div class="tip-code">
-          "ดี แต่ขอเพิ่ม error handling ด้วย"<br>
-          "เพิ่ม unit test ให้ครอบคลุม edge cases"<br>
-          "refactor ให้เป็น async/await แทน"
+          "ดีแต่ tone แข็งเกินไป ขอ casual กว่านี้"<br>
+          "เพิ่ม emoji ด้วย แต่ไม่เกิน 3 ตัว"<br>
+          "แปลงเป็นภาษาไทยทั้งหมด ยกเว้นชื่อ brand"
         </div>
       </div>
     </div>
     <div class="tip-card">
       <div class="tip-icon tip-bg-4">🧩</div>
       <div class="tip-body">
-        <div class="tip-title">4. แบ่งงานใหญ่เป็นชิ้นเล็ก</div>
-        <div class="tip-desc">งาน system design ควรแบ่งเป็นขั้นตอน แต่ละขั้นสั่งแยกกัน ผลลัพธ์ดีกว่ามาก</div>
+        <div class="tip-title">4. แบ่งงานใหญ่เป็นขั้น</div>
+        <div class="tip-desc">งาน Campaign ใหญ่ควรแบ่งเป็นขั้น แต่ละขั้นสั่งแยก ผลลัพธ์ดีกว่ามาก</div>
         <div class="tip-code">
-          ขั้น 1: "ออกแบบ database schema สำหรับ e-commerce"<br>
-          ขั้น 2: "ออกแบบ API endpoints จาก schema นั้น"<br>
-          ขั้น 3: "เขียน FastAPI code สำหรับ endpoint /orders"
+          ขั้น 1: "วิเคราะห์ competitive positioning ของ Oribe vs. KERASTASE"<br>
+          ขั้น 2: "เขียน key messaging 3 ข้อ สำหรับ Oribe Gold Lust"<br>
+          ขั้น 3: "สร้าง content calendar เดือน มิ.ย. จาก messaging นั้น"
         </div>
       </div>
     </div>
     <div class="tip-card">
       <div class="tip-icon tip-bg-5">💾</div>
       <div class="tip-body">
-        <div class="tip-title">5. ใช้ Projects ให้เป็นประโยชน์</div>
-        <div class="tip-desc">สร้าง Project แยกสำหรับแต่ละ repo ใส่ System Prompt และ docs อ้างอิงไว้ — Claude จะมี context ทุกครั้ง</div>
+        <div class="tip-title">5. ใช้ Projects จัดกลุ่มงาน</div>
+        <div class="tip-desc">สร้าง Project แยกสำหรับแต่ละ Brand — Claude จะจำ context ทุกครั้ง</div>
         <div class="tip-code">
-          Project: "Backend API v2"<br>
-          System: "คุณเป็น Senior Dev ที่รู้จัก codebase นี้ดี..."<br>
-          Files: architecture.md, api_spec.yaml, erd.png
+          Project: "111SKIN Campaign 2026"<br>
+          System: "คุณเป็น Senior Brand Strategist ที่เชี่ยวชาญ luxury skincare..."<br>
+          Files: brand_guideline.pdf, tone_of_voice.docx, competitor_map.xlsx
         </div>
       </div>
     </div>
     <div class="tip-card">
-      <div class="tip-icon tip-bg-6">💰</div>
+      <div class="tip-icon tip-bg-6">🌐</div>
       <div class="tip-body">
-        <div class="tip-title">6. ประหยัด Token / Cost</div>
-        <div class="tip-desc">ใช้ Haiku สำหรับงาน code review ง่ายๆ ประหยัดได้มากเมื่อใช้ volume สูงใน CI/CD pipeline</div>
+        <div class="tip-title">6. ให้ตอบภาษาไทยเสมอ</div>
+        <div class="tip-desc">Claude มักตอบภาษาอังกฤษ — เพิ่มบรรทัดนี้ใน Prompt หรือ System Prompt</div>
         <div class="tip-code">
-          <span class="cmt"># เปลี่ยน Model ตามงาน</span><br>
-          Code linting → Haiku (เร็ว ถูก)<br>
-          Code review → Sonnet (สมดุล)<br>
-          Architecture design → Opus (ฉลาดสุด)
+          เพิ่มท้าย Prompt: "ตอบเป็นภาษาไทยทั้งหมด"<br>
+          หรือใน System Prompt: "ตอบเป็นภาษาไทยเสมอ ยกเว้นชื่อ brand และ technical terms"
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon tip-bg-1">📊</div>
+      <div class="tip-body">
+        <div class="tip-title">7. ขอหลาย Option พร้อมกัน</div>
+        <div class="tip-desc">แทนที่จะขอทีละอย่าง ขอ 3–5 options พร้อม rationale — เลือกได้ทันที</div>
+        <div class="tip-code">
+          "ให้ campaign concept 5 แบบสำหรับ Cellcosmet launch<br>
+          แต่ละแบบ: ชื่อ concept, key message, visual direction<br>
+          ระบุว่าแบบไหนเหมาะ TikTok, IG, Facebook"
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon tip-bg-2">🎭</div>
+      <div class="tip-body">
+        <div class="tip-title">8. กำหนด Tone ให้ชัด</div>
+        <div class="tip-desc">Tone คือ "น้ำเสียง" ของ copy — ระบุให้ชัดเพื่อให้ตรง brand voice</div>
+        <div class="tip-code">
+          ตัวอย่าง tone ที่ใช้ได้:<br>
+          "Tone: เป็นกันเอง อบอุ่น ไม่ formal" (BFF)<br>
+          "Tone: หรูหรา exclusive ไม่ใช้ภาษาพูด" (111SKIN)<br>
+          "Tone: วิทยาศาสตร์ น่าเชื่อถือ แต่เข้าใจง่าย" (Cellcosmet)
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon tip-bg-3">📎</div>
+      <div class="tip-body">
+        <div class="tip-title">9. แนบ Context File</div>
+        <div class="tip-desc">อัปโหลดไฟล์ราคา, brand guideline, หรือรายงานยอดขาย — Claude จะวิเคราะห์ได้ทันที</div>
+        <div class="tip-code">
+          Upload: price_list_Q2_2026.xlsx<br>
+          แล้วพิมพ์: "ช่วยวิเคราะห์ว่า product ไหน margin สูงสุด<br>
+          และแนะนำ cross-sell package สำหรับ 111SKIN + Evidens"
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon tip-bg-4">⚡</div>
+      <div class="tip-body">
+        <div class="tip-title">10. Prompt สำหรับงาน Repeat</div>
+        <div class="tip-desc">งานที่ทำซ้ำทุกสัปดาห์ เช่น weekly report — เขียน Prompt ครั้งเดียว บันทึกไว้ใช้ได้เรื่อยๆ</div>
+        <div class="tip-code">
+          "สรุปผลการขาย [สัปดาห์นี้] เทียบกับ target:<br>
+          - 5 SKU ขายดีที่สุด<br>
+          - 3 SKU ต้องระวัง<br>
+          - Recommendation 3 ข้อสำหรับสัปดาห์หน้า"
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon tip-bg-5">🔍</div>
+      <div class="tip-body">
+        <div class="tip-title">11. ขอให้ Claude วิจารณ์งานตัวเอง</div>
+        <div class="tip-desc">หลังได้ draft แรก ขอให้ Claude วิจารณ์และปรับปรุงตัวเอง — ผลลัพธ์ดีขึ้นมาก</div>
+        <div class="tip-code">
+          "ตรวจสอบ caption ที่เพิ่งเขียนอีกครั้ง:<br>
+          1. มี hook ที่ดึงดูดพอไหม?<br>
+          2. CTA ชัดเจนพอไหม?<br>
+          3. ปรับปรุงเวอร์ชันที่ดีกว่า"
+        </div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon tip-bg-6">🚀</div>
+      <div class="tip-body">
+        <div class="tip-title">12. Pro Tip: Role-Playing Persona</div>
+        <div class="tip-desc">กำหนดให้ Claude เป็น persona เฉพาะ เช่น นักวิเคราะห์แบรนด์ระดับ senior — คำตอบจะลึกและตรงประเด็นกว่า</div>
+        <div class="tip-code">
+          "คุณเป็น Senior Brand Consultant ที่ทำงานกับ luxury beauty brands มา 15 ปี เคยดูแล brands ระดับ LVMH — วิเคราะห์ positioning ของ 111SKIN ในตลาดไทย และแนะนำ 3 จุดแข็งที่ควร communicate"
         </div>
       </div>
     </div>
@@ -1884,19 +1955,19 @@ html { scroll-behavior: smooth; }
       <div class="prompt-examples">
         <div class="prompt-example" style="border-color:#d1fae5;background:#f0fdf4">
           <div class="prompt-label" style="color:#059669">ระบุบทบาท Role</div>
-          <div class="prompt-text">"คุณเป็น Senior DevOps Engineer ที่เชี่ยวชาญ Kubernetes, Terraform และ AWS — ช่วย review deployment config นี้..."</div>
+          <div class="prompt-text">"คุณเป็น Senior Brand Strategist ที่เชี่ยวชาญ luxury beauty retail ในตลาด Southeast Asia — ช่วยวิเคราะห์ positioning ของ Evidens de Beauté เทียบกับ La Mer และ SK-II สำหรับ market ไทย..."</div>
         </div>
         <div class="prompt-example" style="border-color:#d1fae5;background:#f0fdf4">
           <div class="prompt-label" style="color:#059669">บอก Context ครบ</div>
-          <div class="prompt-text">"โปรเจกต์นี้เป็น microservices ใช้ FastAPI, PostgreSQL, Redis, deploy บน AWS EKS — ฉันต้องการ optimize query นี้ที่ใช้เวลา 3 วินาที..."</div>
+          <div class="prompt-text">"แคมเปญนี้สำหรับ 111SKIN Rose Gold Brightening Serum ราคา ฿4,500 เปิดตัวบน Shopee ช่วง 11.11 กลุ่มลูกค้าหลัก: ผู้หญิง 25-40 ปี income สูง ต้องการ campaign concept ที่เน้น efficacy + luxury"</div>
         </div>
         <div class="prompt-example" style="border-color:#d1fae5;background:#f0fdf4">
           <div class="prompt-label" style="color:#059669">ระบุข้อจำกัด Constraints</div>
-          <div class="prompt-text">"เขียน Python เท่านั้น ไม่ใช้ library นอกจาก standard library, ต้องผ่าน type checking ด้วย mypy, มี docstring ทุก function"</div>
+          <div class="prompt-text">"เขียนเป็นภาษาไทยเท่านั้น ยกเว้นชื่อ brand, ความยาวไม่เกิน 150 คำต่อ post, ต้องไม่ใช้คำว่า 'ราคาถูก' หรือ 'ลดราคา' เพราะ brand positioning เป็น luxury"</div>
         </div>
         <div class="prompt-example" style="border-color:#d1fae5;background:#f0fdf4">
           <div class="prompt-label" style="color:#059669">ให้ตัวอย่าง Examples</div>
-          <div class="prompt-text">"เขียน unit test ในสไตล์นี้: [ตัวอย่าง test ที่มีอยู่] แล้วเขียน test เพิ่มให้ครอบคลุม edge cases ของ function นี้..."</div>
+          <div class="prompt-text">"เขียน IG caption ในสไตล์นี้: [แนบ caption ที่ชอบ] แล้วเขียนเพิ่ม 5 caption สำหรับ Oribe Gold Lust Shampoo ที่ emphasize the luxury haircare experience..."</div>
         </div>
       </div>
     </div>
@@ -1905,19 +1976,19 @@ html { scroll-behavior: smooth; }
       <div class="prompt-examples">
         <div class="prompt-example" style="border-color:#fee2e2;background:#fef2f2">
           <div class="prompt-label" style="color:#dc2626">Prompt คลุมเครือ</div>
-          <div class="prompt-text">"แก้ code นี้หน่อย" — ไม่รู้ว่า bug อะไร, ภาษาอะไร, expected behavior คืออะไร</div>
+          <div class="prompt-text">"เขียน caption หน่อย" — ไม่รู้ว่า product ไหน, platform อะไร, tone แบบไหน, กลุ่มลูกค้าใคร</div>
         </div>
         <div class="prompt-example" style="border-color:#fee2e2;background:#fef2f2">
           <div class="prompt-label" style="color:#dc2626">ถามหลายอย่างพร้อมกัน</div>
-          <div class="prompt-text">"ช่วย design DB + เขียน API + เขียน test + deploy script ทีเดียว" — ควรแบ่งเป็นขั้นๆ ทีละงาน</div>
+          <div class="prompt-text">"ช่วยเขียน campaign + content calendar + influencer brief + email + ทำ ROI report ทีเดียว" — ควรแบ่งเป็นขั้น ทีละงาน</div>
         </div>
         <div class="prompt-example" style="border-color:#fee2e2;background:#fef2f2">
           <div class="prompt-label" style="color:#dc2626">ใช้คำสั่งเชิงลบอย่างเดียว</div>
-          <div class="prompt-text">"อย่าใช้ loop" — ควรบอกด้วยว่า "ใช้ list comprehension หรือ built-in functions แทน"</div>
+          <div class="prompt-text">"อย่าเขียนแบบ formal" — ควรบอกด้วยว่า "เขียนแบบเป็นกันเอง อบอุ่น เหมือนเพื่อนแนะนำ product"</div>
         </div>
         <div class="prompt-example" style="border-color:#fee2e2;background:#fef2f2">
           <div class="prompt-label" style="color:#dc2626">ไม่บอก Output Format</div>
-          <div class="prompt-text">"ทำ code review" — ควรบอกว่าต้องการ inline comments, summary report, หรือ PR description</div>
+          <div class="prompt-text">"ทำ competitor analysis" — ควรบอกว่าต้องการ: ตาราง Excel, bullet points, หรือ 1-page report พร้อม recommendation</div>
         </div>
       </div>
     </div>
@@ -1925,7 +1996,7 @@ html { scroll-behavior: smooth; }
 
   <div class="info-box tip-box" style="margin-top:28px">
     <span class="info-icon">💡</span>
-    <div class="info-text"><strong>สูตร Prompt ที่ได้ผลสำหรับงาน IT:</strong> [Role: Senior Dev/DevOps/Architect] + [Stack & Version] + [งานที่ต้องการ + expected behavior] + [Constraints: language, framework, style] + [Output format: code/YAML/JSON/diagram] = ผลลัพธ์ที่ดีขึ้น 10x</div>
+    <div class="info-text"><strong>สูตร Prompt ที่ได้ผลสำหรับงาน Marketing:</strong> [Role: Senior Brand/Marketing Strategist] + [Brand & Target Audience] + [งานที่ต้องการ + tone/style] + [Constraints: ภาษา, ความยาว, สิ่งที่ห้ามพูด] + [Output format: caption/table/report/calendar] = ผลลัพธ์ที่ดีขึ้น 10x</div>
   </div>
 </section>
 
@@ -2718,6 +2789,245 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
+<!-- GLOSSARY -->
+<section class="section section-alt" id="glossary">
+  <div class="section-header">
+    <div class="section-badge badge-purple">📖 Glossary</div>
+    <h2 class="section-title">คำศัพท์ที่ควรรู้<br><small style="font-size:18px;font-weight:400;color:#64748b">Key Terms Explained in Plain Thai</small></h2>
+    <p class="section-sub">คำศัพท์เทคนิคที่จะเจอบ่อยเมื่อใช้ Claude — อธิบายแบบเข้าใจง่าย ไม่ต้องมีพื้นฐาน IT</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#EFF6FF;color:#1D4ED8;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">AI</span>
+        <span style="font-weight:700;font-size:15px">Model / โมเดล AI</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">"สมอง" ของ Claude — Haiku, Sonnet, Opus คือโมเดลต่างกัน เหมือนรถหลายรุ่น ฉลาดต่างกัน ราคาต่างกัน เลือกตามงาน</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#F0FDF4;color:#15803D;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Prompt</span>
+        <span style="font-weight:700;font-size:15px">Prompt / คำสั่ง</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">ข้อความที่คุณพิมพ์ถาม Claude — ยิ่ง prompt ชัดเจน ยิ่งได้คำตอบที่ดี เหมือนการสั่งงานพนักงานใหม่ที่ต้องบอกรายละเอียด</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#FFF7ED;color:#C2410C;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Settings</span>
+        <span style="font-weight:700;font-size:15px">System Prompt</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">คำสั่งที่ตั้งค่าถาวรสำหรับ Project — เหมือน "นโยบายบริษัท" ที่ Claude ต้องทำตามตลอด เช่น "ตอบเป็นภาษาไทยเสมอ" หรือ "เน้น luxury tone"</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#FDF4FF;color:#7E22CE;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Cowork</span>
+        <span style="font-weight:700;font-size:15px">Context Window</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">"ความจำระยะสั้น" ของ Claude — เหมือนกระดาษบนโต๊ะ ยิ่งการสนทนายาว ยิ่งเต็ม ถ้าเต็มแล้ว Claude จะลืมข้อมูลแรกๆ</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#EFF6FF;color:#1D4ED8;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Cowork</span>
+        <span style="font-weight:700;font-size:15px">MCP (Model Context Protocol)</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">"ปลั๊กอิน" ที่ช่วยให้ Claude เชื่อมต่อกับ apps อื่น เช่น Google Drive, Slack, Asana — เหมือนสายชาร์จที่เสียบให้ Claude คุยกับโปรแกรมอื่นได้</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#F0FDF4;color:#15803D;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Cowork</span>
+        <span style="font-weight:700;font-size:15px">Connector</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">การเชื่อมต่อระหว่าง Claude กับ app เฉพาะ เช่น "Google Drive Connector" — ทำให้ Claude อ่าน เขียน และจัดการไฟล์ใน Drive ได้โดยตรง</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#FFF7ED;color:#C2410C;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Cowork</span>
+        <span style="font-weight:700;font-size:15px">Skill</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">"ชุดคำสั่งสำเร็จรูป" ที่ติดตั้งใน Claude Cowork — เรียกใช้ได้ในประโยคเดียว เช่น "สร้าง Excel" หรือ "ทำ PowerPoint" โดยไม่ต้องอธิบายยาว</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#FDF4FF;color:#7E22CE;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Cowork</span>
+        <span style="font-weight:700;font-size:15px">Artifact</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">หน้า Dashboard หรือรายงานที่ Claude สร้างให้ และอัปเดตข้อมูลได้อัตโนมัติ — เหมือน "ป้ายสด" ที่แสดงข้อมูล real-time จาก apps ที่เชื่อมต่อ</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#EFF6FF;color:#1D4ED8;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Cowork</span>
+        <span style="font-weight:700;font-size:15px">Agent</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">Claude ที่ทำงานแบบ "อัตโนมัติ" หลายขั้นตอน เช่น เปิดไฟล์ → วิเคราะห์ → เขียนรายงาน → บันทึก โดยไม่ต้องกดสั่งทีละขั้น</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#F0FDF4;color:#15803D;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Security</span>
+        <span style="font-weight:700;font-size:15px">OAuth / SSO</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">วิธี login ที่ปลอดภัย — "Sign in with Google" คือตัวอย่าง OAuth Claude ขอ permission ผ่าน OAuth เพื่อเข้าถึง Drive, Gmail ฯลฯ โดยไม่เห็น password คุณ</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#FFF7ED;color:#C2410C;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">API</span>
+        <span style="font-weight:700;font-size:15px">Token</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">"หน่วยนับ" ที่ Claude ใช้คิดราคา — ประมาณ 1 token ≈ 0.75 คำภาษาอังกฤษ หรือ 1–2 ตัวอักษรภาษาไทย การสนทนายาว = ใช้ token มาก = ค่าใช้จ่ายสูงกว่า</div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="background:#FDF4FF;color:#7E22CE;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px">Cowork</span>
+        <span style="font-weight:700;font-size:15px">Slash Command / คำสั่ง /</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.7">คำสั่งพิเศษที่เริ่มด้วย "/" เช่น /excel, /pptx, /remember — พิมพ์ใน Chat ได้เลย Claude จะรู้ว่าต้องใช้ Skill ไหน</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-header">
+    <div class="section-badge badge-dark">❓ FAQ</div>
+    <h2 class="section-title">คำถามที่พบบ่อย & แก้ปัญหา<br><small style="font-size:18px;font-weight:400;color:#64748b">Troubleshooting Guide</small></h2>
+    <p class="section-sub">ปัญหาที่ทีมพบบ่อยและวิธีแก้ไขอย่างรวดเร็ว</p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span>😕 Claude ตอบเป็นภาษาอังกฤษแทนที่จะเป็นไทย</span>
+        <span class="acc-icon">▼</span>
+      </div>
+      <div class="acc-body">
+        <strong>สาเหตุ:</strong> Claude เดาภาษาจากคำถาม — ถ้า Prompt มีคำอังกฤษมาก Claude มักตอบอังกฤษ<br><br>
+        <strong>วิธีแก้ (3 วิธี):</strong><br>
+        1️⃣ <strong>เพิ่มท้าย Prompt:</strong> "ตอบเป็นภาษาไทยทั้งหมด"<br>
+        2️⃣ <strong>ตั้ง System Prompt:</strong> "ตอบเป็นภาษาไทยเสมอ ยกเว้นชื่อ brand และ technical terms"<br>
+        3️⃣ <strong>พิมพ์ต่อ:</strong> "ขอคำตอบเดิมเป็นภาษาไทย"<br><br>
+        <div style="background:#f0fdf4;border-radius:8px;padding:12px;font-size:12px;color:#166534">✅ วิธีที่ดีที่สุดคือใส่ใน System Prompt ของ Project — ทำครั้งเดียว ใช้ได้ตลอด</div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span>⚠️ Claude บอกว่า "Usage Limit Reached" หรือ quota หมด</span>
+        <span class="acc-icon">▼</span>
+      </div>
+      <div class="acc-body">
+        <strong>สาเหตุ:</strong> แต่ละ plan มี message limit รายวัน/รายเดือน — Haiku ใช้ quota น้อยกว่า Opus มาก<br><br>
+        <strong>วิธีแก้:</strong><br>
+        1️⃣ สลับไปใช้ Model ที่ใช้ quota น้อยกว่า (Haiku สำหรับงานง่าย)<br>
+        2️⃣ รอ quota reset (รีเซ็ตทุกวัน เที่ยงคืน UTC)<br>
+        3️⃣ Upgrade plan หรือติดต่อ admin เพื่อขอ quota เพิ่ม<br><br>
+        <div style="background:#fef3c7;border-radius:8px;padding:12px;font-size:12px;color:#92400e">💡 ประหยัด quota: งานสั้นๆ เช่น แปลภาษา ตรวจสะกด → ใช้ Haiku; งานวิเคราะห์ → Sonnet</div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span>🔌 Connector เชื่อมต่อแล้วแต่ Claude ยังเข้าถึงไฟล์ไม่ได้</span>
+        <span class="acc-icon">▼</span>
+      </div>
+      <div class="acc-body">
+        <strong>สาเหตุที่พบบ่อย:</strong><br>
+        - ยังไม่ได้ grant permission ให้ครบ (ต้องกด "Allow All" ไม่ใช่แค่ "Allow")<br>
+        - Token หมดอายุ (OAuth token expire ทุก 60–90 วัน)<br>
+        - ไฟล์อยู่ใน Shared Drive ที่ permission ต่างกัน<br><br>
+        <strong>วิธีแก้:</strong><br>
+        1️⃣ ไปที่ Settings → Connectors → Disconnect → เชื่อมใหม่อีกครั้ง<br>
+        2️⃣ ตรวจสอบว่า Google Account ที่ใช้ login ตรงกับที่มีไฟล์<br>
+        3️⃣ ลอง "Refresh Connection" ใน Connector settings<br><br>
+        <div style="background:#eff6ff;border-radius:8px;padding:12px;font-size:12px;color:#1e40af">ℹ️ Connector ส่วนใหญ่ต้อง login ใหม่ทุก 60–90 วัน เป็นเรื่องปกติ</div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span>📄 Claude อ่านไฟล์ไม่ได้ หรืออ่านแล้วผลลัพธ์ไม่ถูกต้อง</span>
+        <span class="acc-icon">▼</span>
+      </div>
+      <div class="acc-body">
+        <strong>สาเหตุ:</strong><br>
+        - ไฟล์ PDF ที่ scan มา (image-based) Claude อ่านตัวอักษรไม่ออก<br>
+        - Excel ที่มี formula ซับซ้อนหรือ merged cells<br>
+        - ไฟล์ขนาดใหญ่เกิน limit<br><br>
+        <strong>วิธีแก้:</strong><br>
+        1️⃣ PDF scan → แปลงเป็น searchable PDF ก่อน (ใช้ Adobe Acrobat หรือ Google Drive)<br>
+        2️⃣ Excel → Export เป็น CSV แล้วอัปโหลดใหม่<br>
+        3️⃣ ไฟล์ใหญ่ → แบ่งเป็นส่วนๆ แล้วส่งทีละส่วน<br><br>
+        <div style="background:#f0fdf4;border-radius:8px;padding:12px;font-size:12px;color:#166534">✅ Format ที่ Claude อ่านได้ดีที่สุด: .txt, .md, .csv, searchable PDF, .docx</div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span>🤖 Claude ตอบผิด หรือข้อมูลไม่ตรงกับความเป็นจริง</span>
+        <span class="acc-icon">▼</span>
+      </div>
+      <div class="acc-body">
+        <strong>Claude อาจ "hallucinate":</strong> คิดคำตอบขึ้นมาเมื่อไม่รู้จริง — โดยเฉพาะตัวเลข, วันที่, ราคา, ชื่อคน<br><br>
+        <strong>วิธีป้องกัน:</strong><br>
+        1️⃣ ให้ข้อมูลจริงแนบมาใน Prompt (เช่น "ราคาจาก price list นี้: ...")<br>
+        2️⃣ ขอให้ Claude ระบุความมั่นใจ: "ถ้าไม่แน่ใจให้บอกว่าไม่รู้"<br>
+        3️⃣ ข้อมูลสำคัญ → ตรวจสอบกับแหล่งข้อมูลจริงเสมอ<br><br>
+        <div style="background:#fef3c7;border-radius:8px;padding:12px;font-size:12px;color:#92400e">⚠️ Claude ไม่ใช่ Search Engine — ไม่รู้ข้อมูลหลัง knowledge cutoff และไม่รู้ข้อมูลภายในองค์กรของคุณ ถ้าไม่ได้แนบให้</div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span>⏰ Scheduled Task ไม่รันตามเวลาที่ตั้งไว้</span>
+        <span class="acc-icon">▼</span>
+      </div>
+      <div class="acc-body">
+        <strong>สาเหตุที่พบบ่อย:</strong><br>
+        - Claude Cowork app ไม่ได้เปิดหรือ background process ถูก kill<br>
+        - Timezone ไม่ตรง (ต้องตั้งเป็น Asia/Bangkok)<br>
+        - Connector ที่ Task ใช้ expired token<br><br>
+        <strong>วิธีแก้:</strong><br>
+        1️⃣ เปิด Cowork ทิ้งไว้ (หรือตั้ง auto-start)<br>
+        2️⃣ ตรวจ Timezone ใน Settings → General<br>
+        3️⃣ ตรวจ Connector ที่เชื่อมกับ Task ว่ายังใช้งานได้<br>
+        4️⃣ ลอง "Run Now" เพื่อทดสอบว่า Task ทำงานได้ก่อนตั้งเวลา
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span>🔒 ข้อมูลของเราปลอดภัยไหม? Claude เห็นข้อมูลใน Drive เราไหม?</span>
+        <span class="acc-icon">▼</span>
+      </div>
+      <div class="acc-body">
+        <strong>หลักการของ Anthropic:</strong><br>
+        - Claude เข้าถึงไฟล์ได้เฉพาะเมื่อคุณสั่งให้เข้าถึงในการสนทนานั้นๆ<br>
+        - ไม่ใช้ข้อมูลของ Claude Pro/Team/Enterprise เพื่อ train model<br>
+        - Connector permissions สามารถ revoke ได้ทุกเมื่อใน Settings<br><br>
+        <strong>Best Practices สำหรับทีม:</strong><br>
+        1️⃣ ไม่แชร์ข้อมูลลับในการสนทนาที่ไม่จำเป็น<br>
+        2️⃣ ใช้ Team/Enterprise plan สำหรับข้อมูลภายในองค์กร<br>
+        3️⃣ Review Connector permissions ทุก 3 เดือน<br><br>
+        <div style="background:#eff6ff;border-radius:8px;padding:12px;font-size:12px;color:#1e40af">ℹ️ อ่านนโยบายความเป็นส่วนตัวล่าสุดได้ที่ anthropic.com/privacy</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- TEST BANNER -->
 <section style="background:linear-gradient(135deg,#1a1a2e,#0f3460);padding:48px 60px;text-align:center">
   <div style="font-size:48px;margin-bottom:16px">📝</div>
@@ -2733,9 +3043,9 @@ html { scroll-behavior: smooth; }
 <footer class="footer">
   <div style="font-size:28px;margin-bottom:12px">🤖</div>
   <strong>Claude Complete Guide | คู่มือ Claude ฉบับสมบูรณ์</strong><br>
-  Developer By Most • อัปเดต May 2025<br><br>
+  Developer By Most • อัปเดต May 2026<br><br>
   <span style="color:rgba(255,255,255,0.3);font-size:11px">Claude Chat · Claude Code · Claude Cowork · Haiku · Sonnet · Opus<br>
-  © 2025 Anthropic — เนื้อหาในคู่มือนี้อิงจากข้อมูล official จาก docs.claude.com</span>
+  © 2026 Anthropic — เนื้อหาในคู่มือนี้อิงจากข้อมูล official จาก docs.claude.com</span>
 </footer>
 
 </div>
@@ -2792,7 +3102,9 @@ const sectionMap = {
   'connectors': '#connectors',
   'importexport': '#importexport',
   'migration': '#migration',
-  'summary': '#summary'
+  'summary': '#summary',
+  'glossary': '#glossary',
+  'faq': '#faq'
 };
 
 window.addEventListener('scroll', () => {
