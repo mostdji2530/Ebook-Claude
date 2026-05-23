@@ -2777,11 +2777,11 @@ html { scroll-behavior: smooth; }
 
   <!-- Level tabs for use cases -->
   <div class="level-tabs" style="margin-bottom:32px">
-    <button class="level-tab active" onclick="switchLevel('uc','data',this)">💻 Coding & Debug</button>
-    <button class="level-tab" onclick="switchLevel('uc','meeting',this)">⚙️ DevOps & System</button>
+    <button class="level-tab active" onclick="switchLevel('uc','data',this)">📊 Dashboard & GitHub</button>
+    <button class="level-tab" onclick="switchLevel('uc','meeting',this)">🗄️ Data & Integration</button>
   </div>
 
-  <!-- ── CODING & DEBUG ─────────────────────────────── -->
+  <!-- ── DASHBOARD & GITHUB ─────────────────────────────── -->
   <div class="level-content active" id="uc-data">
 
     <!-- UC1 -->
@@ -2789,40 +2789,39 @@ html { scroll-behavior: smooth; }
       <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);padding:20px 28px;display:flex;align-items:center;gap:16px">
         <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-01</div>
         <div>
-          <div style="color:#fff;font-weight:700;font-size:16px">Debug Python Error — จาก Stack Trace สู่ Fix ใน 2 นาที</div>
-          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Beginner • ใช้ได้ใน: Claude Chat • เวลา: ~2 นาที</div>
+          <div style="color:#fff;font-weight:700;font-size:16px">สร้าง Dashboard HTML — Interactive จากข้อมูล CSV/JSON</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Beginner • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~5 นาที</div>
         </div>
       </div>
       <div style="padding:24px 28px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
           <div>
             <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7">มี error ใน FastAPI app — ได้ stack trace แต่ไม่รู้ root cause วิธีแก้ที่ถูกต้อง และต้องการ test case ป้องกันไม่ให้เกิดซ้ำ</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">มีข้อมูลใน CSV หรือ JSON ต้องการสร้าง Dashboard HTML ที่แสดง Chart, KPI Cards และ Table — เปิดได้ทันทีใน Browser โดยไม่ต้องมี server</div>
             <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
             <div style="font-size:13px;color:#374151;line-height:1.7">
-              • อธิบาย root cause<br>
-              • Code fix พร้อม inline comment<br>
-              • Unit test 2 กรณี (happy path + edge case)<br>
-              • วิธีป้องกันในอนาคต
+              • ไฟล์ HTML ไฟล์เดียว self-contained<br>
+              • Chart (Bar/Line/Pie) ด้วย Chart.js<br>
+              • KPI Cards แสดงตัวเลขสำคัญ<br>
+              • Table พร้อม sort และ filter
             </div>
           </div>
           <div>
             <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
             <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
-ฉันใช้ FastAPI 0.110 + Python 3.12 + PostgreSQL 15<br><br>
-ได้ error นี้:<br>
-[วาง stack trace ทั้งหมด]<br><br>
-Code ที่เกี่ยวข้อง:<br>
-[วาง function/endpoint ที่มีปัญหา]<br><br>
-ช่วย:<br>
-1. อธิบาย root cause (1-3 บรรทัด)<br>
-2. Code fix พร้อม inline comment<br>
-3. Unit test 2 กรณีสำหรับ function นี้<br>
-4. วิธีป้องกันไม่ให้เกิดซ้ำ<br><br>
-ตอบเป็นภาษาไทย พร้อม code blocks
+สร้าง Dashboard HTML ไฟล์เดียว (self-contained) จากข้อมูลนี้:<br>
+[วาง CSV หรือ JSON ที่นี่]<br><br>
+ต้องการ:<br>
+1. KPI Cards (ตัวเลขสรุป 3-4 ค่า เช่น ยอดรวม, ค่าเฉลี่ย, สูงสุด)<br>
+2. Bar Chart แสดง [ระบุ column ที่ต้องการ]<br>
+3. Line Chart แสดง Trend ตาม [วันที่/เดือน]<br>
+4. Data Table พร้อม sort คลิก header<br>
+5. ใช้ Chart.js จาก CDN ไม่ต้อง install<br><br>
+Style: สีน้ำเงิน-ขาว ดูเป็น professional<br>
+ตอบเป็นภาษาไทย พร้อม HTML code เต็มๆ
             </div>
             <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#166534">
-              💡 <strong>Tip:</strong> วาง stack trace เต็มๆ ทุกบรรทัด อย่า paraphrase — Claude debug แม่นกว่ามาก
+              💡 <strong>Cowork Tip:</strong> ใน Cowork สั่ง "บันทึกเป็นไฟล์ dashboard.html" — ได้ไฟล์จริงเปิด browser ได้เลย
             </div>
           </div>
         </div>
@@ -2834,7 +2833,7 @@ Code ที่เกี่ยวข้อง:<br>
       <div style="background:linear-gradient(135deg,#047857,#10b981);padding:20px 28px;display:flex;align-items:center;gap:16px">
         <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-02</div>
         <div>
-          <div style="color:#fff;font-weight:700;font-size:16px">Code Review — วิเคราะห์ Security + Performance ก่อน Merge</div>
+          <div style="color:#fff;font-weight:700;font-size:16px">แก้ไข Dashboard — เพิ่ม Filter, เปลี่ยน Chart, ปรับ Layout</div>
           <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat • เวลา: ~5 นาที</div>
         </div>
       </div>
@@ -2842,31 +2841,33 @@ Code ที่เกี่ยวข้อง:<br>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
           <div>
             <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7">มี PR รอ merge ต้องการ review ก่อน — ตรวจ security holes, N+1 queries, missing error handling และ edge cases ที่ developer อาจมองข้าม</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">มี Dashboard HTML อยู่แล้ว ต้องการแก้ไข — เพิ่ม Dropdown Filter, เปลี่ยน Bar Chart เป็น Pie Chart, เพิ่มสี, ปรับ layout ให้ Responsive บนมือถือ</div>
             <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
             <div style="font-size:13px;color:#374151;line-height:1.7">
-              • Security vulnerabilities ที่พบ<br>
-              • Performance issues (N+1, missing index)<br>
-              • Missing edge cases<br>
-              • สรุป: Approve / Request Changes
+              • HTML code ที่แก้ไขแล้วครบ<br>
+              • Dropdown filter ทำงานได้จริง<br>
+              • Responsive บน mobile<br>
+              • อธิบายทุก change ที่ทำ
             </div>
           </div>
           <div>
             <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
             <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
-Stack: Python 3.12, FastAPI, SQLAlchemy, PostgreSQL<br><br>
-ขอ Code Review สำหรับ PR นี้:<br>
-[วาง code ทั้งหมด]<br><br>
-Review ใน 4 ด้าน:<br>
-1. Security: SQL injection, auth bypass, data exposure<br>
-2. Performance: N+1 query, missing index, slow loop<br>
-3. Error handling: unhandled exceptions, missing validation<br>
-4. Edge cases: null input, empty list, concurrent requests<br><br>
-สรุปท้าย: Approve / Request Changes + เหตุผล<br>
+นี่คือ Dashboard HTML ที่มีอยู่:<br>
+[วาง HTML code ทั้งหมด]<br><br>
+ต้องการแก้ไขดังนี้:<br>
+1. เพิ่ม Dropdown Filter สำหรับ [column ที่ต้องการ filter]<br>
+   - เมื่อเลือก filter ให้ Chart และ Table อัปเดตอัตโนมัติ<br>
+2. เปลี่ยน Bar Chart เป็น Pie Chart<br>
+3. เพิ่ม "Export CSV" button ใน Table<br>
+4. ทำให้ Responsive — ใช้งานได้บน mobile<br>
+5. เปลี่ยน color scheme เป็น [เช่น สีเขียว-ขาว]<br><br>
+ส่งคืน HTML file เต็มๆ ที่แก้แล้ว<br>
+อธิบาย change แต่ละข้อด้วย<br>
 ตอบเป็นภาษาไทย
             </div>
             <div style="background:#fef3c7;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#92400e">
-              💡 <strong>Pro Tip:</strong> แนบ schema + model ด้วย Claude จะตรวจ N+1 query ได้แม่นขึ้นมาก
+              💡 <strong>Pro Tip:</strong> วาง code ทั้งหมด อย่าตัดทิ้ง — Claude ต้องเห็น structure เต็มๆ ถึงจะแก้ได้ถูก
             </div>
           </div>
         </div>
@@ -2878,87 +2879,41 @@ Review ใน 4 ด้าน:<br>
       <div style="background:linear-gradient(135deg,#7e22ce,#a855f7);padding:20px 28px;display:flex;align-items:center;gap:16px">
         <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-03</div>
         <div>
-          <div style="color:#fff;font-weight:700;font-size:16px">SQL Query Optimization — จาก 3 วินาที เหลือ &lt; 200ms</div>
-          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat • เวลา: ~5 นาที</div>
+          <div style="color:#fff;font-weight:700;font-size:16px">อัพโหลดไฟล์ขึ้น GitHub + ตั้งค่า GitHub Pages</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Beginner • ใช้ได้ใน: Claude Chat • เวลา: ~10 นาที</div>
         </div>
       </div>
       <div style="padding:24px 28px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
           <div>
             <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7">มี SQL query ที่ใช้เวลา 3–5 วินาทีใน production ต้องการ optimize ให้ต่ำกว่า 200ms โดยไม่เปลี่ยน business logic</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">มีไฟล์ HTML/CSS/JS ใน local ต้องการ push ขึ้น GitHub และเปิด GitHub Pages ให้คนอื่นเข้าได้ผ่าน URL สาธารณะ</div>
             <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
             <div style="font-size:13px;color:#374151;line-height:1.7">
-              • วิเคราะห์ bottleneck ของ query เดิม<br>
-              • Optimized query พร้อม explain<br>
-              • CREATE INDEX statements<br>
-              • ประมาณ execution time หลัง optimize
+              • Git commands ครบทุกขั้นตอน<br>
+              • Repo บน GitHub พร้อม ใช้งาน<br>
+              • GitHub Pages URL ที่เข้าได้จากทุกที่<br>
+              • แก้ปัญหาที่พบบ่อย (push reject, 404)
             </div>
           </div>
           <div>
             <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
             <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
-PostgreSQL 15 — query นี้ใช้เวลา ~3 วินาที<br>
-Table มี ~5M rows<br><br>
-Query ปัจจุบัน:<br>
-[วาง SQL query]<br><br>
-Schema:<br>
-[วาง CREATE TABLE statements]<br><br>
-EXPLAIN ANALYZE output:<br>
-[วาง output]<br><br>
-ช่วย:<br>
-1. อธิบายว่า bottleneck อยู่ที่ไหน<br>
-2. Optimized query พร้อม comment อธิบาย<br>
-3. Index ที่ควร CREATE (พร้อม statement)<br>
-4. ประมาณ execution time หลัง optimize<br><br>
-ตอบเป็นภาษาไทย
+ฉันมีไฟล์ HTML/CSS/JS ใน folder นี้:<br>
+[รายชื่อไฟล์ เช่น index.html, style.css, data.json]<br><br>
+ต้องการ:<br>
+1. สร้าง GitHub Repo ชื่อ [ชื่อ repo] และ push ไฟล์ทั้งหมด<br>
+2. เปิด GitHub Pages ให้เข้าได้จาก URL สาธารณะ<br>
+3. ทำซ้ำเมื่อมีไฟล์ใหม่หรือแก้ไข<br><br>
+ให้ step-by-step commands สำหรับ:<br>
+- Terminal (macOS/Linux) ทุกขั้นตอน<br>
+- ตั้งแต่ git init จนถึง GitHub Pages ออนไลน์<br>
+- วิธี push update ครั้งต่อๆ ไป<br>
+- แก้ปัญหา: push rejected, Personal Access Token<br><br>
+ตอบเป็นภาษาไทย พร้อม command blocks
             </div>
             <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#1e40af">
-              ℹ️ แนบ EXPLAIN ANALYZE output มาด้วย Claude วิเคราะห์ query plan ได้แม่นมาก
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UC4 -->
-    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
-      <div style="background:linear-gradient(135deg,#b45309,#f59e0b);padding:20px 28px;display:flex;align-items:center;gap:16px">
-        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-04</div>
-        <div>
-          <div style="color:#fff;font-weight:700;font-size:16px">เขียน Unit Tests — ครอบคลุม Edge Cases อัตโนมัติ</div>
-          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat • เวลา: ~5 นาที</div>
-        </div>
-      </div>
-      <div style="padding:24px 28px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-          <div>
-            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7">เขียน function เสร็จแต่ขาด test — ต้องการ pytest cases ที่ครอบคลุม happy path, edge cases และ error cases พร้อม mocks สำหรับ external services</div>
-            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
-            <div style="font-size:13px;color:#374151;line-height:1.7">
-              • Test coverage &gt; 80%<br>
-              • Happy path + Edge cases + Error cases<br>
-              • Fixtures และ mocks ครบ<br>
-              • Run ได้ทันทีด้วย pytest
-            </div>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
-            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
-Python 3.12 + pytest + FastAPI<br><br>
-เขียน unit tests สำหรับ function นี้:<br>
-[วาง function/class]<br><br>
-Context:<br>
-- Database model: [อธิบายหรือวาง model]<br>
-- External dependencies: [เช่น Redis, S3, Email]<br><br>
-ต้องการ test ที่ครอบคลุม:<br>
-1. Happy path (input ปกติ ผลลัพธ์ถูกต้อง)<br>
-2. Edge cases (empty, None, boundary values)<br>
-3. Error cases (invalid input, DB error, timeout)<br>
-4. Mock external services ด้วย pytest-mock<br><br>
-Target coverage: &gt;80%<br>
-ตอบเป็นภาษาไทย พร้อม code blocks พร้อม run
+              ℹ️ <strong>สำคัญ:</strong> ถ้า repo เป็น private GitHub Pages จะใช้ไม่ได้ในแผนฟรี — ต้องเปลี่ยนเป็น public
             </div>
           </div>
         </div>
@@ -2967,52 +2922,102 @@ Target coverage: &gt;80%<br>
 
   </div><!-- /uc-data -->
 
-  <!-- ── DEVOPS & SYSTEM ───────────────────────────── -->
+  <!-- ── DATA & INTEGRATION ───────────────────────────── -->
   <div class="level-content" id="uc-meeting">
 
-    <!-- UC5 -->
+    <!-- UC4 -->
     <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
-      <div style="background:linear-gradient(135deg,#0f766e,#14b8a6);padding:20px 28px;display:flex;align-items:center;gap:16px">
-        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-05</div>
+      <div style="background:linear-gradient(135deg,#b45309,#f59e0b);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-04</div>
         <div>
-          <div style="color:#fff;font-weight:700;font-size:16px">Dockerfile + docker-compose.yml ที่ Production-Ready</div>
-          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat • เวลา: ~5 นาที</div>
+          <div style="color:#fff;font-weight:700;font-size:16px">ทำ Raw Data — Clean, Transform และ Merge หลายไฟล์</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~10 นาที</div>
         </div>
       </div>
       <div style="padding:24px 28px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
           <div>
             <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7">ต้องการ containerize FastAPI app ให้ production-ready — Dockerfile ที่ optimized (multi-stage, non-root user) และ docker-compose สำหรับ local dev + staging</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">มีไฟล์ CSV/Excel หลายไฟล์จากหลาย source — ข้อมูลยังสกปรก (null, duplicate, format ไม่ตรง) ต้องการ Python script ที่ clean และ merge เป็น raw data ไฟล์เดียว</div>
             <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
             <div style="font-size:13px;color:#374151;line-height:1.7">
-              • Dockerfile multi-stage build<br>
-              • docker-compose.yml (app + db + redis)<br>
-              • .dockerignore<br>
-              • Security best practices ที่ใช้
+              • Python script ใช้ pandas<br>
+              • ลบ null/duplicate อัตโนมัติ<br>
+              • Standardize format (วันที่, ตัวเลข)<br>
+              • Output: CSV ไฟล์เดียวพร้อมใช้
             </div>
           </div>
           <div>
             <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
             <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
-Stack: FastAPI + Python 3.12 + PostgreSQL 15 + Redis 7<br>
-Requirements.txt:<br>
-[วาง dependencies]<br><br>
-ต้องการ:<br>
-1. Dockerfile (multi-stage: builder + runtime)<br>
-   - Non-root user<br>
-   - Layer caching สำหรับ pip install<br>
-   - Image size น้อยที่สุด<br>
-2. docker-compose.yml สำหรับ local dev<br>
-   - services: app, postgres, redis<br>
-   - Volume สำหรับ hot reload<br>
-   - healthcheck ทุก service<br>
-3. .dockerignore<br>
-4. อธิบาย security best practices ที่ใช้<br><br>
-ตอบเป็นภาษาไทย
+มีไฟล์ข้อมูลดังนี้:<br>
+- ไฟล์ 1: [ชื่อไฟล์.csv] — columns: [ระบุ columns]<br>
+- ไฟล์ 2: [ชื่อไฟล์.xlsx] — columns: [ระบุ columns]<br>
+- [เพิ่มไฟล์อื่นๆ]<br><br>
+ปัญหาที่พบในข้อมูล:<br>
+- column วันที่ format ต่างกัน (บางไฟล์ DD/MM/YYYY, บางไฟล์ YYYY-MM-DD)<br>
+- มี null values ใน column [ระบุ]<br>
+- มี duplicate rows ตาม key column [ระบุ]<br>
+- ตัวเลขบางค่ามี comma (1,000 แทนที่จะเป็น 1000)<br><br>
+เขียน Python script (pandas) ที่:<br>
+1. อ่านทุกไฟล์และ merge เป็น DataFrame เดียว<br>
+2. Clean ทุกปัญหาที่ระบุ<br>
+3. Export เป็น raw_data_output.csv<br>
+4. Print summary: จำนวน rows ก่อน/หลัง clean<br><br>
+ตอบเป็นภาษาไทย พร้อม code พร้อม run
             </div>
             <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#166534">
-              💡 <strong>Tip:</strong> บอก target cloud (AWS ECS / GCP Cloud Run / K8s) Claude จะ optimize config ตามนั้น
+              💡 <strong>Tip:</strong> ใน Cowork อัปโหลดไฟล์ตรงๆ แล้วสั่ง "ทำ raw data จากไฟล์เหล่านี้" — Claude อ่านและ process ได้เลย
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UC5 -->
+    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,#0f766e,#14b8a6);padding:20px 28px;display:flex;align-items:center;gap:16px">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-05</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:16px">ทำ Database บน Docker — PostgreSQL พร้อมใช้ใน 5 นาที</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat • เวลา: ~10 นาที</div>
+        </div>
+      </div>
+      <div style="padding:24px 28px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">ต้องการ Database สำหรับ project โดยไม่ต้อง install PostgreSQL บน machine — ใช้ Docker สร้าง container ที่มี DB พร้อม schema เชื่อมต่อได้ทันที</div>
+            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
+            <div style="font-size:13px;color:#374151;line-height:1.7">
+              • docker-compose.yml (PostgreSQL + pgAdmin)<br>
+              • init.sql สร้าง tables ตาม schema ที่ต้องการ<br>
+              • .env สำหรับ credentials<br>
+              • Connection string สำหรับ app
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
+            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
+ต้องการ setup PostgreSQL บน Docker สำหรับ project นี้:<br><br>
+Database schema ที่ต้องการ:<br>
+[อธิบาย tables ที่ต้องการ เช่น:<br>
+- users: id, name, email, created_at<br>
+- products: id, name, price, stock<br>
+- orders: id, user_id, product_id, quantity, total]<br><br>
+ต้องการ:<br>
+1. docker-compose.yml<br>
+   - PostgreSQL 15 (port 5432)<br>
+   - pgAdmin 4 (port 5050) สำหรับ GUI<br>
+   - Named volume ข้อมูลไม่หายเมื่อ restart<br>
+2. init.sql — สร้าง tables + sample data 5 rows<br>
+3. .env file สำหรับ credentials<br>
+4. Connection string สำหรับ Python/FastAPI/Node<br>
+5. คำสั่ง start/stop/reset ที่ใช้บ่อย<br><br>
+ตอบเป็นภาษาไทย
+            </div>
+            <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#1e40af">
+              ℹ️ <strong>Tip:</strong> เพิ่ม pgAdmin ใน compose จะได้ GUI จัดการ DB ผ่าน browser ที่ localhost:5050
             </div>
           </div>
         </div>
@@ -3024,141 +3029,45 @@ Requirements.txt:<br>
       <div style="background:linear-gradient(135deg,#be185d,#ec4899);padding:20px 28px;display:flex;align-items:center;gap:16px">
         <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-06</div>
         <div>
-          <div style="color:#fff;font-weight:700;font-size:16px">System Architecture Design — 3 Approaches + Trade-offs</div>
-          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Advanced • ใช้ได้ใน: Claude Chat • เวลา: ~10 นาที</div>
+          <div style="color:#fff;font-weight:700;font-size:16px">เชื่อมต่อ Web App กับ Google Sheets ผ่าน Apps Script</div>
+          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Advanced • ใช้ได้ใน: Claude Chat • เวลา: ~15 นาที</div>
         </div>
       </div>
       <div style="padding:24px 28px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
           <div>
             <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7">ต้องเพิ่ม feature ใหม่ใน existing system — ต้องการ architecture design ที่ scalable และ fit กับ tech stack เดิม พร้อม trade-off analysis เพื่อเลือก approach ที่เหมาะสม</div>
+            <div style="font-size:14px;color:#374151;line-height:1.7">ต้องการให้ Web App (HTML/JS) ส่งข้อมูล อ่านข้อมูล จาก Google Sheets โดยใช้ Google Apps Script เป็น backend — ไม่ต้องมี server จ่ายเงิน</div>
             <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
             <div style="font-size:13px;color:#374151;line-height:1.7">
-              • 3 architecture approaches<br>
-              • Trade-offs แต่ละ approach<br>
-              • Database schema + API contract<br>
-              • Recommendation พร้อมเหตุผล
+              • Apps Script (Code.gs) — doGet + doPost<br>
+              • HTML/JS ที่ fetch ข้อมูลจาก Sheets<br>
+              • วิธี deploy เป็น Web App URL<br>
+              • แก้ปัญหา CORS ด้วย JSONP
             </div>
           </div>
           <div>
             <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
             <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
-Stack: FastAPI + PostgreSQL + Redis + Celery + AWS S3<br>
-Current architecture:<br>
-[อธิบายสั้นๆ]<br><br>
-Feature ที่ต้องการเพิ่ม:<br>
-[อธิบาย business requirement]<br><br>
-Constraints:<br>
-- Backward compatible<br>
-- Budget: [งบ infrastructure]<br>
-- Expected load: [req/sec]<br><br>
-ต้องการ:<br>
-1. 3 architecture approaches พร้อม diagram<br>
-2. Database schema changes<br>
-3. API endpoints ใหม่ (method, path, payload)<br>
-4. Trade-offs แต่ละ approach<br>
-5. Recommendation + เหตุผล<br><br>
-ตอบเป็นภาษาไทย
+ต้องการเชื่อมต่อ HTML Web App กับ Google Sheets<br>
+ผ่าน Google Apps Script<br><br>
+Google Sheet structure:<br>
+- Sheet ID: [ระบุ Sheet ID จาก URL]<br>
+- Tab name: [ชื่อ tab เช่น "ผลการทดสอบ"]<br>
+- Columns: [ระบุ columns เช่น timestamp, name, score]<br><br>
+ต้องการ 3 operations:<br>
+1. เขียนข้อมูลใหม่ลง Sheet (doGet + params)<br>
+2. อ่านข้อมูลทั้งหมดจาก Sheet (JSONP callback)<br>
+3. อ่านข้อมูลตาม filter (เช่น กรองตามชื่อ)<br><br>
+เขียน:<br>
+A) Apps Script (Code.gs) ครบทุก function<br>
+B) HTML + JS ที่เรียกใช้ทั้ง 3 operations<br>
+C) วิธี deploy เป็น Web App (step-by-step)<br>
+D) แก้ปัญหา CORS โดยใช้ JSONP<br><br>
+ตอบเป็นภาษาไทย พร้อม code blocks
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UC7 -->
-    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
-      <div style="background:linear-gradient(135deg,#1d4ed8,#6366f1);padding:20px 28px;display:flex;align-items:center;gap:16px">
-        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-07</div>
-        <div>
-          <div style="color:#fff;font-weight:700;font-size:16px">GitHub Actions CI/CD Pipeline — Test → Build → Deploy อัตโนมัติ</div>
-          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Intermediate • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~10 นาที</div>
-        </div>
-      </div>
-      <div style="padding:24px 28px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-          <div>
-            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7">ต้องการ CI/CD pipeline ที่ run test → build Docker → push ECR → deploy ECS โดยอัตโนมัติเมื่อ merge เข้า main ลด manual deploy ทุกครั้ง</div>
-            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
-            <div style="font-size:13px;color:#374151;line-height:1.7">
-              • .github/workflows/deploy.yml<br>
-              • Stages: test → lint → build → push → deploy<br>
-              • Secret management (GitHub Secrets)<br>
-              • Auto rollback strategy
-            </div>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
-            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
-Stack: FastAPI + Python 3.12 + Docker<br>
-Target: AWS ECR + ECS Fargate<br>
-Branch: main=production, dev=staging<br><br>
-เขียน GitHub Actions (.github/workflows/deploy.yml):<br><br>
-Stages:<br>
-1. test: pytest + coverage report<br>
-2. lint: ruff + mypy<br>
-3. build: docker build + tag<br>
-4. push: push to AWS ECR<br>
-5. deploy: update ECS service<br>
-   (main→prod, dev→staging)<br><br>
-Features:<br>
-- Cache pip dependencies<br>
-- Fail fast ถ้า test ไม่ผ่าน<br>
-- Notify Slack เมื่อ deploy สำเร็จ/ล้มเหลว<br>
-- Auto rollback ถ้า health check ไม่ผ่าน<br><br>
-ตอบเป็นภาษาไทย พร้อม YAML file
-            </div>
-            <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#1e40af">
-              🚀 <strong>Cowork Tip:</strong> พิมพ์ต่อ "สร้างไฟล์ deploy.yml" — Claude สร้างไฟล์จริงให้ download ได้เลย
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UC8 -->
-    <div style="background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:24px">
-      <div style="background:linear-gradient(135deg,#065f46,#059669);padding:20px 28px;display:flex;align-items:center;gap:16px">
-        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;font-weight:800;font-size:18px;color:#fff">UC-08</div>
-        <div>
-          <div style="color:#fff;font-weight:700;font-size:16px">เขียน README + API Docs + Docstrings ครบในครั้งเดียว</div>
-          <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:2px">ระดับ: Beginner • ใช้ได้ใน: Claude Chat / Cowork • เวลา: ~5 นาที</div>
-        </div>
-      </div>
-      <div style="padding:24px 28px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-          <div>
-            <div style="font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Scenario</div>
-            <div style="font-size:14px;color:#374151;line-height:1.7">เขียน code เสร็จแต่ขาด documentation — ต้องการ README, API docs และ docstrings ที่ developer คนอื่นอ่านแล้วใช้ได้ทันทีโดยไม่ต้องถามผู้เขียน</div>
-            <div style="margin-top:16px;font-weight:700;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">✅ ผลลัพธ์ที่คาดหวัง</div>
-            <div style="font-size:13px;color:#374151;line-height:1.7">
-              • README.md ครบ (Install, Quick Start, API Ref)<br>
-              • Docstrings ทุก function (Google style)<br>
-              • Example curl command<br>
-              • Changelog entry
-            </div>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:13px;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">📋 Prompt — Copy &amp; Paste</div>
-            <div style="background:#f8fafc;border-radius:12px;padding:16px;border:2px dashed #94a3b8;font-size:12px;line-height:1.8;font-family:monospace;color:#1e293b">
-เขียน documentation สำหรับ project/function นี้:<br>
-[วาง code หรืออธิบาย project]<br><br>
-ต้องการ:<br>
-1. README.md ที่มี:<br>
-   Overview, Installation, Quick Start,<br>
-   API Reference, Environment variables<br>
-2. Docstrings ทุก function (Google style)<br>
-   - Args, Returns, Raises, Example<br>
-3. API documentation สำหรับแต่ละ endpoint:<br>
-   - Method, Path, Request body,<br>
-   Response, Error codes, curl example<br>
-4. Changelog entry สำหรับ version นี้<br><br>
-Target reader: Junior Developer ที่ไม่รู้จัก codebase<br>
-ตอบเป็นภาษาไทย พร้อม Markdown format
-            </div>
-            <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#166534">
-              💡 <strong>Cowork Tip:</strong> พิมพ์ต่อ "บันทึกเป็นไฟล์ README.md" — ได้ไฟล์จริงใส่ repo ได้เลย
+            <div style="background:#fef3c7;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#92400e">
+              ⚠️ <strong>สำคัญ:</strong> เมื่อแก้ Apps Script ต้อง "Deploy ใหม่" ทุกครั้ง — URL เดิมจะยังรัน version เก่าอยู่
             </div>
           </div>
         </div>
@@ -3166,6 +3075,7 @@ Target reader: Junior Developer ที่ไม่รู้จัก codebase<br
     </div>
 
   </div><!-- /uc-meeting -->
+
 
 
   <div class="info-box tip-box" style="margin-top:8px">
